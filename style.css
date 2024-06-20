@@ -6,3 +6,11 @@
     font-family: 'Times New Roman', serif;
     color: hsla(0, 100%, 40%, 1);
 }
+.intenship-details {
+    font-family: 'Times New Roman', serif;
+    color: hsl(147, 50%, 47%);
+}
+.intership-details:hover{
+    color: hsl(147, 50%, 47%);
+    border:2px solid rgb(0, 255, 221)
+}

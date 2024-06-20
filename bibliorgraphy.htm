@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bibliorgraphy</title>
+        <style>
+            .card {
+                padding: 2px 16px;
+                transition: 0.1s;
+                margin:auto;
+                text-align: right;
+                box-shadow: 0 8px 4px 0 #000;
+                
+            }
+            .card:hover {box-shadow: 0 16px 128px 0 #999999;}
+            img {border-radius: 5px 5px 0 0;}
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><h2>About Me</h2>
+                <p>I am currently a Grade-11 student studying HKDSE course in <a href="https://www.puikiucollege.edu.hk/">Pui Kiu College</a>.</p>
+            </li>
+            <div class="card">
+                <img src="bnbpythoninc.png" alt="BnBpythoninc-logo" width="20" height="20"></img>
+                <h1>Chen Yueming 陈悦铭</h1>
+                <img src="81n.png" alt="陈悦铭" style="width:100%">
+                <p><i>Founder/CIO</i> at BnBpython</p>
+                <p><i>Emal(work)</i>: <a href="mailto:yuemingdd@gmail.com">yuemingdd@gmail.com</a></p>
+                <p><i>Del. / Fax</i><button onclick="copyDel()"><a href="+85269981753">(+852) 6998  1753</a></button></p>
+            </div>
+            <li>
+                <h2>Interests</h2>
+                <ol>
+                    <li>Microscopic Theoretical Physics</li>
+                    <li>Applications of Machine Learning (ML) models</li>
+                    <li>Python/Mojo lang/C#/HolyC/Java/Scratch base language tests, graphics&UI integrations and gamedesign</li>
+                </ol>
+            </li>
+            <li>Github status: <iframe href="https://www.github.io/mchigm/mchigm/status.md"></iframe></li>
+            <li>
+                <h2>Contact</h2>
+                <p>School: <button onclick="copyEmailb()"><a href="mailto:201806006@stu.pkc.edu.hk">201806006 [at] stu [dot] pkc [dot] edu [dot] hk</a></button></p>
+                <p>Personal[MCHIGM]: <button onclick="copyEmaila()"><a href="mailto:yuemingdd@gmail.com">yuemingdd [at] gmail [dot] com</a></button></p>
+            </li>
+        </ul>
+        <a href="resume.pdf" download><button>Download Resume</button></a>
+    </body>
+</html>
+<script src="main.js"></script>
