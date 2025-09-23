@@ -23,3 +23,26 @@ iframe {
     display: block;
     margin: 20px auto;
 }
+
+/* Special styling for resources iframe */
+iframe[src="resources.html"] {
+    height: 5615px; /* Sum of all other iframe heights: 5 * 1123px */
+}
+
+/* Container for side-by-side layout */
+.side-by-side {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.side-by-side .section {
+    flex: 1;
+    text-align: center;
+}
+
+.side-by-side .section h1 {
+    margin-bottom: 20px;
+}
