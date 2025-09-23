@@ -14,3 +14,12 @@
     color: hsl(147, 50%, 47%);
     border:2px solid rgb(0, 255, 221)
 }
+iframe {
+    width: 794px;
+    height: 1123px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 8px #aaa;
+    background: white;
+    display: block;
+    margin: 20px auto;
+}
