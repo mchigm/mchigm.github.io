@@ -4,6 +4,6 @@ function copyDel() {
 function copyEmaila() {
 	navigator.clipboard.writeText("yuemingdd@gmail.com")
 }
-function copyEmaila() {
+function copyEmailb() {
 	navigator.clipboard.writeText("201806006@stu.pkc.edu.hk")
 }
