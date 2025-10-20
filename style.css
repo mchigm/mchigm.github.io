@@ -26,7 +26,7 @@ iframe {
 
 /* Special styling for resources iframe */
 iframe[src="resources.html"] {
-    height: 5615px; /* Sum of all other iframe heights: 5 * 1123px */
+    height: 800px; /* Reduced from 5615px due to condensed content */
 }
 
 /* Container for side-by-side layout */
