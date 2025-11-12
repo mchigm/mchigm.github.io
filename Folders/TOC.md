@@ -9,6 +9,9 @@ The root directory contains only essential files for the main website:
 - **index.html** - Main landing page of the website
 - **style.css** - Main stylesheet for the website
 - **main.js** - Common JavaScript functions used across all webpages
+- **utils.ts** - TypeScript utility functions (compiled to utils.js)
+- **utils.js** - Compiled JavaScript utilities from TypeScript
+- **tsconfig.json** - TypeScript compiler configuration
 - **.gitignore** - Git ignore configuration file
 - **Folders/** - Directory containing all organized content
 
@@ -65,6 +68,8 @@ Abstract organizational folders for special features:
   - pop-up.htm - Pop-up pages index
   - popup-viewer.html - Markdown viewer for pop-up content
   - test-popupsite.md - Test/demo pop-up page
+  - popup-manager.ts - TypeScript module for popup management
+  - popup-manager.js - Compiled JavaScript from TypeScript
 
 ## Etc Directory (`./Folders/etc/`)
 
@@ -97,3 +102,6 @@ When linking to files from different locations, use relative paths:
 - The TOC.md file should be updated when new directories or major file additions are made
 - Deprecated files should be moved to `Folders/etc/` rather than deleted
 - All new web content should go under `Folders/Files/Web site/` or appropriate subdirectory
+- TypeScript files (`.ts`) should be compiled to JavaScript (`.js`) before deployment
+- To compile TypeScript files, run: `tsc <filename>.ts --target ES6 --module ES6 --lib ES6,DOM`
+- Both `.ts` and `.js` files are committed to the repository for transparency

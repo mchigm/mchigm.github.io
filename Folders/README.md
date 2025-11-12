@@ -58,7 +58,8 @@ For detailed documentation about the folder structure, see [TOC.md](TOC.md).
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (ES6+)
+- TypeScript (for enhanced type safety and modularity)
 - Font Awesome icons
 - Markdown support for pop-up pages
 

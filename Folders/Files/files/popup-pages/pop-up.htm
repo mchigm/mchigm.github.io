@@ -86,11 +86,12 @@
     
     <a href="../../index.html" class="back-link">← Back to Main Page</a>
 
+    <script src="popup-manager.js"></script>
     <script>
         // ========================================
         // HOW TO ADD A NEW POP-UP PAGE:
         // ========================================
-        // 1. Create a new .md (markdown) file in the repository root
+        // 1. Create a new .md (markdown) file in this directory
         // 2. Add a new entry to the popupPages array below
         // 3. Commit and push your changes
         // 
@@ -105,33 +106,9 @@
             { file: 'test-popupsite.md', title: 'Test Pop-up Site', date: '2025-11-12' }
         ];
 
-        // Sort by date (newest first)
-        popupPages.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        // Render the list
-        function renderPopupList() {
-            const listElement = document.getElementById('popup-links');
-            const noPopupsElement = document.getElementById('no-popups');
-            
-            if (popupPages.length === 0) {
-                noPopupsElement.style.display = 'block';
-                return;
-            }
-            
-            listElement.innerHTML = popupPages.map(page => {
-                // Create a viewer URL that renders the markdown
-                const viewerUrl = `popup-viewer.html?file=${encodeURIComponent(page.file)}`;
-                return `
-                    <li>
-                        <a href="${viewerUrl}" target="_blank">${page.title}</a>
-                        <span class="popup-date">(${page.date})</span>
-                    </li>
-                `;
-            }).join('');
-        }
-
-        // Initialize on page load
-        renderPopupList();
+        // Initialize the popup manager using TypeScript-generated class
+        const manager = new PopupManager(popupPages);
+        manager.renderPopupList();
     </script>
 </body>
 </html>
