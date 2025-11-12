@@ -104,8 +104,6 @@
             color: #666;
         }
     </style>
-    <!-- Include marked.js for markdown parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <a href="pop-up.htm" class="back-link">← Back to Pop-up Pages</a>
@@ -115,6 +113,81 @@
     </div>
 
     <script>
+        // Simple markdown to HTML converter
+        function parseMarkdown(markdown) {
+            let html = markdown;
+            
+            // Headers
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+            
+            // Italic
+            html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+            
+            // Strikethrough
+            html = html.replace(/~~(.*?)~~/gim, '<del>$1</del>');
+            
+            // Code blocks
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code>$2</code></pre>');
+            
+            // Inline code
+            html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
+            
+            // Links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2">$1</a>');
+            
+            // Blockquote
+            html = html.replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>');
+            
+            // Unordered lists
+            html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
+            
+            // Ordered lists
+            html = html.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
+            
+            // Wrap lists
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            
+            // Tables (basic support)
+            const tableRegex = /\|(.+)\|\n\|[-:\s|]+\|\n((?:\|.+\|\n?)+)/gim;
+            html = html.replace(tableRegex, function(match, header, rows) {
+                const headers = header.split('|').filter(h => h.trim()).map(h => `<th>${h.trim()}</th>`).join('');
+                const rowsHtml = rows.trim().split('\n').map(row => {
+                    const cells = row.split('|').filter(c => c.trim()).map(c => `<td>${c.trim()}</td>`).join('');
+                    return `<tr>${cells}</tr>`;
+                }).join('');
+                return `<table><thead><tr>${headers}</tr></thead><tbody>${rowsHtml}</tbody></table>`;
+            });
+            
+            // Horizontal rule
+            html = html.replace(/^---$/gim, '<hr>');
+            
+            // Line breaks
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = '<p>' + html + '</p>';
+            
+            // Clean up
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+            html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<pre>)/g, '$1');
+            html = html.replace(/(<\/pre>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<table>)/g, '$1');
+            html = html.replace(/(<\/table>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ul>)/g, '$1');
+            html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<hr>)/g, '$1');
+            html = html.replace(/(<hr>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<blockquote>)/g, '$1');
+            html = html.replace(/(<\/blockquote>)<\/p>/g, '$1');
+            
+            return html;
+        }
+
         // Get the file parameter from URL
         const urlParams = new URLSearchParams(window.location.search);
         const fileName = urlParams.get('file');
@@ -132,8 +205,8 @@
                     return response.text();
                 })
                 .then(markdown => {
-                    // Parse markdown to HTML using marked.js
-                    const html = marked.parse(markdown);
+                    // Parse markdown to HTML using our simple parser
+                    const html = parseMarkdown(markdown);
                     document.getElementById('markdown-content').innerHTML = html;
                     
                     // Update page title if there's an h1
