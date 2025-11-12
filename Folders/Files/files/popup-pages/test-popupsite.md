@@ -52,7 +52,7 @@ console.log(greet('Pop-up Site'));
 
 ### 5. Links
 
-Visit [Chen Yueming's Main Page](index.html) or check out [GitHub](https://github.com/mchigm).
+Visit [Chen Yueming's Main Page](../../../../index.html) or check out [GitHub](https://github.com/mchigm).
 
 ### 6. Table
 
@@ -70,4 +70,4 @@ If you can read this page properly formatted with all the elements above, the po
 ---
 
 *Created: 2025-11-12*  
-*Author: Chen Yueming*
+*Author: GitHub Copilot*
