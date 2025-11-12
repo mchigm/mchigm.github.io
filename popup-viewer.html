@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pop-up Viewer - Chen Yueming</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        #markdown-content {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #markdown-content h1 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        #markdown-content h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+        #markdown-content h3 {
+            color: #555;
+        }
+        #markdown-content code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        #markdown-content pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        #markdown-content pre code {
+            background: none;
+            padding: 0;
+        }
+        #markdown-content blockquote {
+            border-left: 4px solid #667eea;
+            margin-left: 0;
+            padding-left: 20px;
+            color: #666;
+        }
+        #markdown-content a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        #markdown-content a:hover {
+            text-decoration: underline;
+        }
+        #markdown-content img {
+            max-width: 100%;
+            height: auto;
+        }
+        #markdown-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        #markdown-content th, #markdown-content td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        #markdown-content th {
+            background-color: #667eea;
+            color: white;
+        }
+        #markdown-content tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+    <!-- Include marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <a href="pop-up.htm" class="back-link">← Back to Pop-up Pages</a>
+    
+    <div id="markdown-content">
+        <div class="loading">Loading...</div>
+    </div>
+
+    <script>
+        // Get the file parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file');
+        
+        if (!fileName) {
+            document.getElementById('markdown-content').innerHTML = 
+                '<div class="error-message">No file specified</div>';
+        } else {
+            // Fetch and render the markdown file
+            fetch(fileName)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('File not found');
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Parse markdown to HTML using marked.js
+                    const html = marked.parse(markdown);
+                    document.getElementById('markdown-content').innerHTML = html;
+                    
+                    // Update page title if there's an h1
+                    const h1 = document.querySelector('#markdown-content h1');
+                    if (h1) {
+                        document.title = h1.textContent + ' - Pop-up Viewer';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('markdown-content').innerHTML = 
+                        '<div class="error-message">Error loading file: ' + error.message + '</div>';
+                });
+        }
+    </script>
+</body>
+</html>
