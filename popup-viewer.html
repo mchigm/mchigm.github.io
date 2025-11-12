@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pop-up Viewer - Chen Yueming</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        #markdown-content {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #markdown-content h1 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        #markdown-content h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+        #markdown-content h3 {
+            color: #555;
+        }
+        #markdown-content code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        #markdown-content pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        #markdown-content pre code {
+            background: none;
+            padding: 0;
+        }
+        #markdown-content blockquote {
+            border-left: 4px solid #667eea;
+            margin-left: 0;
+            padding-left: 20px;
+            color: #666;
+        }
+        #markdown-content a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        #markdown-content a:hover {
+            text-decoration: underline;
+        }
+        #markdown-content img {
+            max-width: 100%;
+            height: auto;
+        }
+        #markdown-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        #markdown-content th, #markdown-content td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        #markdown-content th {
+            background-color: #667eea;
+            color: white;
+        }
+        #markdown-content tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <a href="pop-up.htm" class="back-link">← Back to Pop-up Pages</a>
+    
+    <div id="markdown-content">
+        <div class="loading">Loading...</div>
+    </div>
+
+    <script>
+        // Simple markdown to HTML converter
+        function parseMarkdown(markdown) {
+            let html = markdown;
+            
+            // Headers
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+            
+            // Italic
+            html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+            
+            // Strikethrough
+            html = html.replace(/~~(.*?)~~/gim, '<del>$1</del>');
+            
+            // Code blocks
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code>$2</code></pre>');
+            
+            // Inline code
+            html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
+            
+            // Links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2">$1</a>');
+            
+            // Blockquote
+            html = html.replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>');
+            
+            // Unordered lists
+            html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
+            
+            // Ordered lists
+            html = html.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
+            
+            // Wrap lists
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            
+            // Tables (basic support)
+            const tableRegex = /\|(.+)\|\n\|[-:\s|]+\|\n((?:\|.+\|\n?)+)/gim;
+            html = html.replace(tableRegex, function(match, header, rows) {
+                const headers = header.split('|').filter(h => h.trim()).map(h => `<th>${h.trim()}</th>`).join('');
+                const rowsHtml = rows.trim().split('\n').map(row => {
+                    const cells = row.split('|').filter(c => c.trim()).map(c => `<td>${c.trim()}</td>`).join('');
+                    return `<tr>${cells}</tr>`;
+                }).join('');
+                return `<table><thead><tr>${headers}</tr></thead><tbody>${rowsHtml}</tbody></table>`;
+            });
+            
+            // Horizontal rule
+            html = html.replace(/^---$/gim, '<hr>');
+            
+            // Line breaks
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = '<p>' + html + '</p>';
+            
+            // Clean up
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+            html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<pre>)/g, '$1');
+            html = html.replace(/(<\/pre>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<table>)/g, '$1');
+            html = html.replace(/(<\/table>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ul>)/g, '$1');
+            html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<hr>)/g, '$1');
+            html = html.replace(/(<hr>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<blockquote>)/g, '$1');
+            html = html.replace(/(<\/blockquote>)<\/p>/g, '$1');
+            
+            return html;
+        }
+
+        // Get the file parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file');
+        
+        if (!fileName) {
+            document.getElementById('markdown-content').innerHTML = 
+                '<div class="error-message">No file specified</div>';
+        } else {
+            // Fetch and render the markdown file
+            fetch(fileName)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('File not found');
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Parse markdown to HTML using our simple parser
+                    const html = parseMarkdown(markdown);
+                    document.getElementById('markdown-content').innerHTML = html;
+                    
+                    // Update page title if there's an h1
+                    const h1 = document.querySelector('#markdown-content h1');
+                    if (h1) {
+                        document.title = h1.textContent + ' - Pop-up Viewer';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('markdown-content').innerHTML = 
+                        '<div class="error-message">Error loading file: ' + error.message + '</div>';
+                });
+        }
+    </script>
+</body>
+</html>

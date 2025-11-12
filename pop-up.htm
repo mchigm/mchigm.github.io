@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pop-up Pages - Chen Yueming</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="600">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .refresh-notice {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .popup-list {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .popup-list ol {
+            list-style-type: decimal;
+            padding-left: 30px;
+        }
+        .popup-list li {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .popup-list a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+        .popup-list a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        .popup-date {
+            color: #888;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .no-popups {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-style: italic;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #667eea;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pop-up Pages</h1>
+    <div class="refresh-notice">⟳ This page auto-refreshes every 10 minutes</div>
+    
+    <div class="popup-list">
+        <ol id="popup-links" reversed>
+            <!-- Pop-up page links will be dynamically loaded here -->
+        </ol>
+        <div id="no-popups" class="no-popups" style="display: none;">
+            No pop-up pages available yet.
+        </div>
+    </div>
+    
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+
+    <script>
+        // ========================================
+        // HOW TO ADD A NEW POP-UP PAGE:
+        // ========================================
+        // 1. Create a new .md (markdown) file in the repository root
+        // 2. Add a new entry to the popupPages array below
+        // 3. Commit and push your changes
+        // 
+        // Example entry:
+        // { file: 'my-new-page.md', title: 'My New Page Title', date: '2025-11-13' }
+        // ========================================
+        
+        // List of popup markdown files
+        // This array should be manually updated when new .md files are added
+        // Format: { file: 'filename.md', title: 'Display Title', date: 'YYYY-MM-DD' }
+        const popupPages = [
+            { file: 'test-popupsite.md', title: 'Test Pop-up Site', date: '2025-11-12' }
+        ];
+
+        // Sort by date (newest first)
+        popupPages.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Render the list
+        function renderPopupList() {
+            const listElement = document.getElementById('popup-links');
+            const noPopupsElement = document.getElementById('no-popups');
+            
+            if (popupPages.length === 0) {
+                noPopupsElement.style.display = 'block';
+                return;
+            }
+            
+            listElement.innerHTML = popupPages.map(page => {
+                // Create a viewer URL that renders the markdown
+                const viewerUrl = `popup-viewer.html?file=${encodeURIComponent(page.file)}`;
+                return `
+                    <li>
+                        <a href="${viewerUrl}" target="_blank">${page.title}</a>
+                        <span class="popup-date">(${page.date})</span>
+                    </li>
+                `;
+            }).join('');
+        }
+
+        // Initialize on page load
+        renderPopupList();
+    </script>
+</body>
+</html>
