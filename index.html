@@ -27,18 +27,147 @@
     <h1>陈悦铭</h1>
     Chen Yueming
     
-    <!-- Pop-up Page Banner -->
-    <div style="text-align: center; margin: 20px auto; max-width: 800px;">
-        <a href="Folders/Files/files/popup-pages/pop-up.htm" style="display: block; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">
-            📢 Pop-up Pages - Click Here for Latest Updates
-        </a>
+    <!-- Navigation Bar with Pop-up Banner -->
+    <div class="navbar-container">
+        <!-- Pop-up Page Banner -->
+        <div class="popup-banner">
+            <a href="Folders/Files/files/popup-pages/pop-up.htm" class="popup-banner-link">
+                📢 Pop-up Pages - Click Here for Latest Updates
+            </a>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <nav class="main-nav">
+            <div class="nav-item">
+                <a href="#home" class="nav-link active" onclick="showTab('home'); return false;">🏠 Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="Folders/Files/mobilewebsite.html" class="nav-link">📱 Mobile</a>
+            </div>
+            <div class="nav-item">
+                <a href="#external" class="nav-link" onclick="showTab('external'); return false;">🔗 External Links</a>
+            </div>
+            <div class="nav-item search-container">
+                <input type="text" id="siteSearch" class="search-input" placeholder="🔍 Search site..." onkeyup="performSearch(event)">
+            </div>
+        </nav>
     </div>
     
     <header></header>
-    <nav></nav>
-<article><div class="side-by-side"><div class="section"><h1>Bibliography</h1><iframe src="Folders/Files/Web site/bibliorgraphy.htm"></iframe><h1>Internships</h1><iframe src="Folders/Files/Web site/internship.htm"></iframe><h1>Researches</h1><iframe src="Folders/Files/Web site/researches.htm"></iframe><h1>What I'm Currently Working On</h1><iframe src="Folders/Files/Web site/works.htm"></iframe></div><div class="section"><h1>Resources</h1><iframe src="Folders/Files/Web site/resources.html"></iframe></div></div><h1>Projects</h1><iframe src="Folders/Files/Web site/projects.htm"></iframe><h1>Useful links:</h1></article><aside></aside>
+<article>
+    <!-- Home Tab Content -->
+    <div id="home-content" class="tab-content active">
+        <div class="side-by-side"><div class="section"><h1>Bibliography</h1><iframe src="Folders/Files/Web site/bibliorgraphy.htm"></iframe><h1>Internships</h1><iframe src="Folders/Files/Web site/internship.htm"></iframe><h1>Researches</h1><iframe src="Folders/Files/Web site/researches.htm"></iframe><h1>What I'm Currently Working On</h1><iframe src="Folders/Files/Web site/works.htm"></iframe></div><div class="section"><h1>Resources</h1><iframe src="Folders/Files/Web site/resources.html"></iframe></div></div><h1>Projects</h1><iframe src="Folders/Files/Web site/projects.htm"></iframe><h1>Useful links:</h1>
+    </div>
+    
+    <!-- External Links Tab Content (WIP) -->
+    <div id="external-content" class="tab-content">
+        <h1>External Links (Work in Progress)</h1>
+        <div class="external-links-container">
+            <p style="text-align: center; color: #666; margin: 20px;">
+                This feature allows you to view external websites without leaving this page.
+            </p>
+            <div class="external-link-selector">
+                <label for="externalUrl">Enter URL to load:</label>
+                <input type="text" id="externalUrl" placeholder="https://example.com" style="width: 60%; padding: 8px; margin: 10px;">
+                <button onclick="loadExternalSite()" style="padding: 8px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 5px; cursor: pointer;">Load</button>
+            </div>
+            <div id="externalFrame" style="margin-top: 20px; text-align: center;">
+                <p style="color: #999; font-style: italic;">No site loaded yet. Enter a URL above to begin.</p>
+            </div>
+        </div>
+    </div>
+</article><aside></aside>
     <footer><p>Copy the username or click the superlink: </p> | <a href="https://twitter.com/PythonOffical" class="fa fa-twitter">B&B python offical</a> | <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bw6ATp6rHTEKNpubrqwjwNA%3D%3D" class="fa fa-linkedin">陈悦铭</a> | <a href="https://youtu.be/minecraft_herobrine_gaming" class="fa fa-youtube">MCHIGM</a><a href="#" class="fa fa-skype"></a> | <a href="https://www.reddit.com/user/MCHIGM" class="fa fa-reddit">r\MCHIGM</a> | <a href="https://github.com/mchigm" class="fa fa-github">mchigm</a> | <a href="#" class="fa fa-wechat"></a> | <a href="#" class="fa fa-discord"></a> | <a href="mailto:yuemingdd@gmail.com" class="fa fa-google">yuemingdd [at] gmail [dot] com</a> | <a href="https://www.kaggle.com/bryanchenyueming" class="fa fa-kaggle">Bryan Chen Yue ming</a> | </footer>
 </body>
 <script>
+// Tab switching functionality
+function showTab(tabName) {
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Remove active class from all nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    const selectedTab = document.getElementById(tabName + '-content');
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+    
+    // Add active class to clicked nav link
+    event.target.classList.add('active');
+}
 
+// Search functionality
+function performSearch(event) {
+    const searchTerm = event.target.value.toLowerCase();
+    
+    if (event.key === 'Enter' && searchTerm) {
+        // Search through all text content in the home tab
+        const homeContent = document.getElementById('home-content');
+        const iframes = homeContent.querySelectorAll('iframe');
+        
+        // Try to search in iframe contents (may be limited by CORS)
+        let found = false;
+        iframes.forEach(iframe => {
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const text = iframeDoc.body.innerText || iframeDoc.body.textContent;
+                if (text.toLowerCase().includes(searchTerm)) {
+                    found = true;
+                    // Scroll to the iframe
+                    iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Highlight the iframe temporarily
+                    iframe.style.border = '3px solid #667eea';
+                    setTimeout(() => {
+                        iframe.style.border = '1px solid #ccc';
+                    }, 2000);
+                }
+            } catch (e) {
+                // CORS restriction - can't access iframe content
+                console.log('Cannot search in iframe due to CORS policy');
+            }
+        });
+        
+        if (!found) {
+            alert('No results found for: ' + searchTerm);
+        }
+    }
+}
+
+// External site loading functionality
+function loadExternalSite() {
+    const url = document.getElementById('externalUrl').value;
+    const frameContainer = document.getElementById('externalFrame');
+    
+    if (!url) {
+        alert('Please enter a URL');
+        return;
+    }
+    
+    // Add https:// if not present
+    let fullUrl = url;
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        fullUrl = 'https://' + url;
+    }
+    
+    // Create iframe to load external site
+    frameContainer.innerHTML = `
+        <iframe src="${fullUrl}" 
+                style="width: 100%; height: 800px; border: 1px solid #ccc; box-shadow: 0 0 8px #aaa; background: white; border-radius: 8px;"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                title="External site viewer">
+        </iframe>
+        <p style="margin-top: 10px; color: #666; font-size: 14px;">
+            Note: Some sites may not load due to security restrictions (X-Frame-Options).
+        </p>
+    `;
+}
 </script>
