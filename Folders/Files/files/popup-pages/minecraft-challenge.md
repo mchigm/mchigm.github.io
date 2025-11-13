@@ -1,4 +1,4 @@
-# Mini Hermitcraft Challenge: 3-Week Server Event
+# MCHIGM Minecraft Challenge: 3-Week Server Event
 
 Welcome to our exclusive **3-Week Minecraft Challenge** - a condensed, action-packed adventure inspired by the legendary Hermitcraft server!
 
@@ -128,6 +128,18 @@ The spirit of Hermitcraft lies in:
 - **Creative expression** in all its forms
 - **Community building** through shared experiences
 - **Fun gameplay** without toxicity
+
+## Juding
+
+The judging will be based **Online** only.
+
+What *is* a successful submission:
+1. Participants record video footage of playing it
+2. Participants upload the edited footages to any video platform (i.e.: YouTube, LinkedIn, TikTok, BiliBili) at least once a week
+3. The submission will be considered successfull if participants achieve a 3-week strike completing 2.
+
+Judging is referenced from the ADMIN's view, and the content-progress relationship of the video seen.
+**NOTE: Time is not a judging factor of the competition**
 
 ---
 
