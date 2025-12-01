@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta charset="ANSI">
+    <meta charset="UTF-8">
     <meta namme="keywords" content="Yueming Chen, Bryan Chen yueming, BnBpythoninc, 陈悦铭, MCHIGM">
     <meta name="description" content="Official site of Bryan Chen Yueming">
     <meta name="author" content="Yueming Chen">
@@ -45,6 +45,9 @@
                 <a href="Folders/Files/mobilewebsite.html" class="nav-link">📱 Mobile</a>
             </div>
             <div class="nav-item">
+                <a href="#source" class="nav-link" onclick="showTab('source'); return false;">💬 Source</a>
+            </div>
+            <div class="nav-item">
                 <a href="#external" class="nav-link" onclick="showTab('external'); return false;">🔗 External Links</a>
             </div>
             <div class="nav-item search-container">
@@ -59,7 +62,11 @@
     <div id="home-content" class="tab-content active">
         <div class="side-by-side"><div class="section"><h1>Bibliography</h1><iframe src="Folders/Files/Web site/bibliorgraphy.htm"></iframe><h1>Internships</h1><iframe src="Folders/Files/Web site/internship.htm"></iframe><h1>Researches</h1><iframe src="Folders/Files/Web site/researches.htm"></iframe><h1>What I'm Currently Working On</h1><iframe src="Folders/Files/Web site/works.htm"></iframe></div><div class="section"><h1>Resources</h1><iframe src="Folders/Files/Web site/resources.html"></iframe></div></div><h1>Projects</h1><iframe src="Folders/Files/Web site/projects.htm"></iframe><h1>Useful links:</h1>
     </div>
-    
+    <!-- Source Content -->
+    <div id="source-content" class="tab-content">
+        <h1>MCHIGM Q&A Forum</h1>
+        <iframe src="Folders/Files/files/simple forum/source-MCHIGM/frontend/public/index.html" style="width: 100%; height: 800px; border: 1px solid #ccc; border-radius: 8px;"></iframe>
+    </div>
     <!-- External Links Tab Content (WIP) -->
     <div id="external-content" class="tab-content">
         <h1>External Links (Work in Progress)</h1>
@@ -78,7 +85,7 @@
         </div>
     </div>
 </article><aside></aside>
-    <footer><p>Copy the username or click the superlink: </p> | <a href="https://twitter.com/PythonOffical" class="fa fa-twitter">B&B python offical</a> | <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bw6ATp6rHTEKNpubrqwjwNA%3D%3D" class="fa fa-linkedin">陈悦铭</a> | <a href="https://youtu.be/minecraft_herobrine_gaming" class="fa fa-youtube">MCHIGM</a><a href="#" class="fa fa-skype"></a> | <a href="https://www.reddit.com/user/MCHIGM" class="fa fa-reddit">r\MCHIGM</a> | <a href="https://github.com/mchigm" class="fa fa-github">mchigm</a> | <a href="#" class="fa fa-wechat"></a> | <a href="#" class="fa fa-discord"></a> | <a href="mailto:yuemingdd@gmail.com" class="fa fa-google">yuemingdd [at] gmail [dot] com</a> | <a href="https://www.kaggle.com/bryanchenyueming" class="fa fa-kaggle">Bryan Chen Yue ming</a> | </footer>
+    <footer><p>Copy the username or click the superlink: </p> | <a href="https://twitter.com/PythonOffical" class="fa fa-twitter">B&B python offical</a> | <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3Bw6ATp6rHTEKNpubrqwjwNA%3D%3D" class="fa fa-linkedin">陈悦铭</a> | <a href="https://youtu.be/minecraft_herobrine_gaming" class="fa fa-youtube">MCHIGM</a><a href="#" class="fa fa-skype"></a> | <a href="https://www.reddit.com/user/MCHIGM" class="fa fa-reddit">r\MCHIGM</a> | <a href="https://github.com/mchigm" class="fa fa-github">mchigm</a> | <a href="#" class="fa fa-wechat"></a> | <a href="#" class="fa fa-discord"></a> | <a href="mailto:yuemingdd@gmail.com" class="fa fa-google">yuemingdd [at] gmail [dot] com</a> | <a href="https://www.kaggle.com/bryanchenyueming" style="font-family: Arial, sans-serif; text-decoration: none;">🏆 Bryan Chen Yue ming</a> | </footer>
 </body>
 <script>
 // Tab switching functionality
@@ -107,38 +114,44 @@ function showTab(tabName) {
 
 // Search functionality
 function performSearch(event) {
-    const searchTerm = event.target.value.toLowerCase();
-    
-    if (event.key === 'Enter' && searchTerm) {
-        // Search through all text content in the home tab
-        const homeContent = document.getElementById('home-content');
-        const iframes = homeContent.querySelectorAll('iframe');
-        
-        // Try to search in iframe contents (may be limited by CORS)
-        let found = false;
-        iframes.forEach(iframe => {
-            try {
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                const text = iframeDoc.body.innerText || iframeDoc.body.textContent;
-                if (text.toLowerCase().includes(searchTerm)) {
-                    found = true;
-                    // Scroll to the iframe
-                    iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    // Highlight the iframe temporarily
-                    iframe.style.border = '3px solid #667eea';
-                    setTimeout(() => {
-                        iframe.style.border = '1px solid #ccc';
-                    }, 2000);
-                }
-            } catch (e) {
-                // CORS restriction - can't access iframe content
-                console.log('Cannot search in iframe due to CORS policy');
+    const searchTerm = event.target.value.trim().toLowerCase();
+    if (event.key !== 'Enter' || !searchTerm) {
+        return;
+    }
+
+    // Search within whichever tab is currently visible
+    const activeTab = document.querySelector('.tab-content.active') || document.getElementById('home-content');
+    const iframes = activeTab ? activeTab.querySelectorAll('iframe') : [];
+    let found = false;
+
+    iframes.forEach(iframe => {
+        try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const text = iframeDoc.body.innerText || iframeDoc.body.textContent;
+            if (text.toLowerCase().includes(searchTerm)) {
+                found = true;
+                iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                iframe.style.border = '3px solid #667eea';
+                setTimeout(() => {
+                    iframe.style.border = '1px solid #ccc';
+                }, 2000);
             }
-        });
-        
-        if (!found) {
-            alert('No results found for: ' + searchTerm);
+        } catch (e) {
+            console.log('Cannot search in iframe due to CORS policy');
         }
+    });
+
+    // Fallback to text inside the active tab if no iframe matched
+    if (!found && activeTab) {
+        const tabText = (activeTab.innerText || activeTab.textContent || '').toLowerCase();
+        if (tabText.includes(searchTerm)) {
+            found = true;
+            activeTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    if (!found) {
+        alert('No results found for: ' + searchTerm);
     }
 }
 

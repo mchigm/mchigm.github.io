@@ -84,10 +84,25 @@
         </div>
     </div>
     
-    <a href="../../index.html" class="back-link">← Back to Main Page</a>
+    <a href="../../index.html" class="back-link" id="back-link">← Back to Main Page</a>
 
     <script src="popup-manager.js"></script>
     <script>
+        // Update back link based on referrer
+        (function() {
+            const backLink = document.getElementById('back-link');
+            const referrer = document.referrer;
+            
+            // Check if accessed from the forum
+            if (referrer && referrer.includes('source-MCHIGM')) {
+                backLink.textContent = '← Back to Previous Page';
+                backLink.href = referrer;
+            } else {
+                backLink.textContent = '← Back to Main Page';
+                backLink.href = '../../../../index.html';
+            }
+        })();
+        
         // ========================================
         // HOW TO ADD A NEW POP-UP PAGE:
         // ========================================
