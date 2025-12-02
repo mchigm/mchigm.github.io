@@ -12,45 +12,76 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
 
 ```
 ./
-├── index.html              # Main landing page
-├── style.css               # Main stylesheet
-├── main.js                 # Common JavaScript functions
-├── utils.js                # Shared JavaScript utilities
-├── utils.ts                # TypeScript utilities
-├── tsconfig.json           # TypeScript configuration
-├── README.md               # Project README (This file)
-├── .gitignore              # Git ignore configuration
-├── .vscode/                # Editor settings
-├── .git/                   # Git repository data
-└── Folders/                # Organized content directory
-    ├── README.md           # Folder-level overview
-    ├── TOC.md              # Detailed file structure documentation
-    ├── Files/              # Website files and content
-    │   ├── mobilewebsite.html    # Mobile-optimized version
-    │   ├── Web site/             # Main content pages
-    │   │   ├── 81n.png           # Profile photo
-    │   │   ├── bibliorgraphy.htm # Bibliography
-    │   │   ├── internship.htm    # Internship experience
-    │   │   ├── researches.htm    # Research projects
-    │   │   ├── works.htm         # Current work
-    │   │   ├── resources.html    # Resources page
-    │   │   └── projects.htm      # Projects list
-    │   ├── Documents/            # Academic publications
+├── index.html                          # Main landing page
+├── style.css                           # Main stylesheet
+├── main.js                             # Common JavaScript functions
+├── utils.js                            # Shared JavaScript utilities
+├── utils.ts                            # TypeScript utilities
+├── tsconfig.json                       # TypeScript configuration
+├── README.md                           # Project README (this file)
+├── .gitignore                          # Git ignore configuration
+├── .vscode/                            # Editor settings
+├── .idea/                              # IDE metadata (optional)
+├── .git/                               # Git repository data
+└── Folders/                            # Organized content directory
+    ├── README.md                       # Folder-level overview
+    ├── TOC.md                          # Detailed file structure documentation
+    ├── Files/                          # Website files and content
+    │   ├── mobilewebsite.html          # Mobile-optimized version
+    │   ├── Web site/                   # Main content pages
+    │   │   ├── 81n.png                 # Profile photo
+    │   │   ├── bibliorgraphy.htm       # Bibliography
+    │   │   ├── internship.htm          # Internship experience
+    │   │   ├── researches.htm          # Research projects
+    │   │   ├── works.htm               # Current work
+    │   │   ├── resources.html          # Resources page
+    │   │   └── projects.htm            # Projects list
+    │   ├── Documents/                  # Academic publications
     │   │   └── Personalized_Generative_Model_via_Active_Learning.pdf
-    │   ├── Resources/            # PDF files and resources
+    │   ├── Resources/                  # PDF files and resources
     │   │   ├── business-card.pdf
-    │   │   ├── 20240412-方正证券-多因子选股系列研究之十七：新闻中的有限注意力和“凸显效应”因子构建.pdf
+    │   │   ├── 20240412-方正证券-...有限注意力...因子构建.pdf
     │   │   └── 中信建投-大数据人工智能研究之六：机器学习因子有效性分析.pdf
-    │   └── files/                # Special features
-    │       └── popup-pages/      # Pop-up site functionality
-    │           ├── pop-up.htm
-    │           ├── popup-viewer.html
-    │           ├── popup-manager.js
-    │           ├── popup-manager.ts
-    │           ├── minecraft-challenge.md
-    │           ├── self-test-popup.md
-    │           └── test-popupsite.md
-    └── etc/                # Miscellaneous and archived files
+    │   └── files/                      # Special features & apps
+    │       ├── popup-pages/            # Pop-up site functionality
+    │       │   ├── pop-up.htm          # Listing + dynamic loader
+    │       │   ├── popup-viewer.html   # Viewer template
+    │       │   ├── popup-manager.js    # Runtime JS
+    │       │   ├── popup-manager.ts    # TypeScript source
+    │       │   ├── minecraft-challenge.md
+    │       │   ├── self-test-popup.md
+    │       │   └── test-popupsite.md
+    │       └── simple forum/           # Source forum subproject root [WIP]
+    │           └── source-MCHIGM/      # Forum project (nested repo)
+    │               ├── LICENSE
+    │               ├── README.md       # Forum main README
+    │               ├── backend/        # Backend implementations
+    │               │   ├── php/        # PHP prototype
+    │               │   └── python/     # Python services
+    │               ├── config/         # Configuration examples
+    │               │   └── config.example.yml
+    │               ├── docs/           # Documentation
+    │               │   ├── api/        # API specs
+    │               │   ├── deployment.md
+    │               │   └── progress/   # Progress tracking docs
+    │               ├── examples/       # Usage examples & sample data
+    │               │   ├── README.md
+    │               │   └── data/
+    │               ├── frontend/       # Forum frontend app
+    │               │   ├── README.md   # Frontend overview
+    │               │   ├── package.json
+    │               │   ├── tsconfig.json
+    │               │   ├── src/
+    │               │   │   ├── api.ts
+    │               │   │   ├── main.ts
+    │               │   │   ├── types.ts
+    │               │   │   └── utils.ts
+    │               │   └── public/
+    │               │       ├── index.html
+    │               │       └── styles/
+    │               │           └── main.css
+    │               └── IMPLEMENTATION_VERIFICATION.md
+    └── etc/                          # Miscellaneous and archived files
         ├── Resume Yueming Bryan 202509.pages
         ├── business-card.html
         ├── bnbpythoninc.png
@@ -85,7 +116,7 @@ For detailed documentation about the folder structure, see [TOC.md](TOC.md).
 
 ## Contact
 
-- **Email**: yuemingdd@gmail.com
+- **Email**: [yuemingdd@gmail.com](mailto:yuemingdd@gmail.com)
 - **GitHub**: [mchigm](https://github.com/mchigm)
 - **LinkedIn**: 陈悦铭
 - **Kaggle**: [Bryan Chen Yue ming](https://www.kaggle.com/bryanchenyueming)
@@ -134,4 +165,10 @@ For creating new pages based on the site template, refer to the original templat
 
 *Thanks to [Font Awesome](https://fontawesome.com/) for the icons*
 
-*Last updated: 2025-11-12*
+Last updated: 2025-12-02
+
+---
+### Subproject: Source Forum (`simple forum/source-MCHIGM`)
+Embedded under Files → `files/simple forum/source-MCHIGM`, this subdirectory hosts a developing Q&A forum with its own `frontend` and planned backend structure. The main public entry is served via:
+`Folders/Files/files/simple forum/source-MCHIGM/frontend/public/index.html`
+This is embedded in the main site "Source" tab using an `<iframe>` and shares styling separately.
