@@ -1,0 +1,84 @@
+# 配置文件示例
+
+# 环境设置
+environment: development  # development, staging, production
+
+# 数据库配置
+database:
+  host: localhost
+  port: 3306
+  name: mchigm_dev
+  user: dev_user
+  password: your_password_here
+  charset: utf8mb4
+  
+# API 配置
+api:
+  base_url: http://localhost:8000
+  version: v1
+  timeout: 30
+  rate_limit:
+    requests_per_minute: 100
+    requests_per_hour: 1000
+
+# 前端配置
+frontend:
+  dev_server: http://localhost:3000
+  build_output: dist
+  
+# 认证配置
+auth:
+  jwt_secret: your_jwt_secret_here
+  token_expiry: 3600  # 秒
+  
+# 邮件配置
+email:
+  smtp_host: smtp.example.com
+  smtp_port: 587
+  smtp_user: noreply@example.com
+  smtp_password: your_email_password
+  from_address: noreply@example.com
+  from_name: MCHIGM Platform
+
+# 文件上传配置
+upload:
+  max_file_size: 10485760  # 10MB in bytes
+  allowed_types:
+    - image/jpeg
+    - image/png
+    - image/gif
+    - application/pdf
+  storage_path: /var/www/mchigm/storage
+
+# 日志配置
+logging:
+  level: debug  # debug, info, warning, error
+  path: /var/log/mchigm
+  max_size: 104857600  # 100MB
+  backup_count: 10
+
+# Firebase 配置 (可选)
+firebase:
+  api_key: your_firebase_api_key
+  auth_domain: your-project.firebaseapp.com
+  project_id: your-project-id
+  storage_bucket: your-project.appspot.com
+  messaging_sender_id: your_sender_id
+  app_id: your_app_id
+
+# 缓存配置
+cache:
+  driver: redis  # redis, memcached, file
+  host: localhost
+  port: 6379
+  ttl: 3600
+
+# 第三方服务
+services:
+  analytics:
+    enabled: false
+    google_analytics_id: UA-XXXXX-Y
+  
+  monitoring:
+    enabled: false
+    sentry_dsn: https://xxx@sentry.io/xxx

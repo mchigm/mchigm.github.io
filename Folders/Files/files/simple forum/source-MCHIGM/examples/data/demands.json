@@ -1,0 +1,79 @@
+{
+  "demands": [
+    {
+      "id": "d001",
+      "title": "社区环保志愿者招募",
+      "description": "招募10名志愿者参与周末社区垃圾分类宣传活动",
+      "category": "志愿服务",
+      "tags": ["环保", "志愿者", "社区"],
+      "status": "open",
+      "creator": {
+        "user_id": "u001",
+        "username": "绿色地球"
+      },
+      "deadline": "2024-12-31",
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "d002",
+      "title": "大学生支教项目招募",
+      "description": "寻找5名大学生志愿者，为偏远山区小学提供在线辅导",
+      "category": "教育公益",
+      "tags": ["支教", "教育", "大学生"],
+      "status": "in_progress",
+      "creator": {
+        "user_id": "u002",
+        "username": "希望之光"
+      },
+      "deadline": "2024-09-01",
+      "created_at": "2024-01-10T14:00:00Z",
+      "updated_at": "2024-01-20T09:15:00Z"
+    },
+    {
+      "id": "d003",
+      "title": "创业团队寻找技术合伙人",
+      "description": "我们是一个教育科技创业团队，正在寻找全栈开发工程师加入",
+      "category": "创业招募",
+      "tags": ["创业", "技术", "合伙人"],
+      "status": "open",
+      "creator": {
+        "user_id": "u003",
+        "username": "创新教育"
+      },
+      "deadline": "2024-06-30",
+      "created_at": "2024-02-01T08:45:00Z",
+      "updated_at": "2024-02-01T08:45:00Z"
+    },
+    {
+      "id": "d004",
+      "title": "校园二手图书捐赠活动",
+      "description": "收集校园内闲置图书，捐赠给需要的学校和图书馆",
+      "category": "校园公益",
+      "tags": ["图书", "捐赠", "校园"],
+      "status": "completed",
+      "creator": {
+        "user_id": "u004",
+        "username": "书香校园"
+      },
+      "deadline": "2024-03-15",
+      "created_at": "2024-01-05T16:20:00Z",
+      "updated_at": "2024-03-16T10:00:00Z"
+    },
+    {
+      "id": "d005",
+      "title": "社区老年人智能手机培训",
+      "description": "为社区老年人提供免费智能手机使用培训，包括微信、健康码等常用功能",
+      "category": "社区服务",
+      "tags": ["老年人", "培训", "数字化"],
+      "status": "open",
+      "creator": {
+        "user_id": "u005",
+        "username": "温暖社区"
+      },
+      "deadline": "2024-12-31",
+      "created_at": "2024-02-10T11:30:00Z",
+      "updated_at": "2024-02-10T11:30:00Z"
+    }
+  ]
+}

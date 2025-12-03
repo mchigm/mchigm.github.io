@@ -1,0 +1,22 @@
+{
+  "name": "mchigm-frontend",
+  "version": "0.1.0",
+  "description": "Frontend for MCHIGM community platform",
+  "main": "src/main.ts",
+  "scripts": {
+    "dev": "echo 'Development server not configured yet. Will use TypeScript compiler and live server.'",
+    "build": "echo 'Build script not configured yet. Will compile TypeScript to JavaScript.'",
+    "test": "echo 'Tests not configured yet.'",
+    "lint": "echo 'Linting not configured yet.'"
+  },
+  "keywords": [
+    "community",
+    "platform",
+    "typescript",
+    "frontend"
+  ],
+  "author": "MCHIGM",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

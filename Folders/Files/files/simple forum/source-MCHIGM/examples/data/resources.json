@@ -1,0 +1,84 @@
+{
+  "resources": [
+    {
+      "id": "r001",
+      "title": "会议室场地提供",
+      "description": "可提供50人容量的会议室，配备投影仪和音响设备",
+      "type": "场地",
+      "quantity": 1,
+      "tags": ["会议室", "场地", "设备"],
+      "status": "available",
+      "provider": {
+        "user_id": "u010",
+        "username": "科技园区"
+      },
+      "location": "北京市海淀区中关村",
+      "created_at": "2024-01-12T09:00:00Z",
+      "updated_at": "2024-01-12T09:00:00Z"
+    },
+    {
+      "id": "r002",
+      "title": "专业摄影设备租借",
+      "description": "提供单反相机、三脚架、灯光设备等专业摄影器材",
+      "type": "设备",
+      "quantity": 3,
+      "tags": ["摄影", "设备", "租借"],
+      "status": "available",
+      "provider": {
+        "user_id": "u011",
+        "username": "影像工作室"
+      },
+      "location": "上海市徐汇区",
+      "created_at": "2024-01-18T14:30:00Z",
+      "updated_at": "2024-01-18T14:30:00Z"
+    },
+    {
+      "id": "r003",
+      "title": "法律咨询服务",
+      "description": "提供免费法律咨询，包括劳动法、合同法等常见法律问题",
+      "type": "服务",
+      "quantity": -1,
+      "tags": ["法律", "咨询", "公益"],
+      "status": "available",
+      "provider": {
+        "user_id": "u012",
+        "username": "公益律师团"
+      },
+      "location": "线上服务",
+      "created_at": "2024-02-05T10:00:00Z",
+      "updated_at": "2024-02-05T10:00:00Z"
+    },
+    {
+      "id": "r004",
+      "title": "办公用品捐赠",
+      "description": "全新文具、打印纸、文件夹等办公用品，适合学校或公益组织使用",
+      "type": "物资",
+      "quantity": 100,
+      "tags": ["办公用品", "捐赠", "文具"],
+      "status": "reserved",
+      "provider": {
+        "user_id": "u013",
+        "username": "爱心企业"
+      },
+      "location": "广州市天河区",
+      "created_at": "2024-01-25T16:45:00Z",
+      "updated_at": "2024-02-08T11:20:00Z"
+    },
+    {
+      "id": "r005",
+      "title": "编程培训课程",
+      "description": "提供Python/JavaScript入门编程课程，面向零基础学员",
+      "type": "教育",
+      "quantity": 20,
+      "tags": ["编程", "培训", "教育"],
+      "status": "available",
+      "provider": {
+        "user_id": "u014",
+        "username": "代码学院"
+      },
+      "location": "线上课程",
+      "created_at": "2024-02-12T08:30:00Z",
+      "updated_at": "2024-02-12T08:30:00Z"
+    }
+  ]
+}

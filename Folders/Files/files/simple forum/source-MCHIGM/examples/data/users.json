@@ -1,0 +1,94 @@
+{
+  "users": [
+    {
+      "id": "u001",
+      "username": "绿色地球",
+      "email": "green.earth@example.com",
+      "type": "organization",
+      "verified": true,
+      "profile": {
+        "description": "致力于环保事业的公益组织",
+        "location": "北京市",
+        "website": "https://example.com/green-earth"
+      },
+      "stats": {
+        "demands_posted": 5,
+        "resources_provided": 2,
+        "collaborations": 12
+      },
+      "created_at": "2023-06-15T10:00:00Z"
+    },
+    {
+      "id": "u002",
+      "username": "希望之光",
+      "email": "hope.light@example.com",
+      "type": "organization",
+      "verified": true,
+      "profile": {
+        "description": "专注于教育公益的非营利组织",
+        "location": "上海市",
+        "website": "https://example.com/hope-light"
+      },
+      "stats": {
+        "demands_posted": 8,
+        "resources_provided": 3,
+        "collaborations": 25
+      },
+      "created_at": "2023-03-20T14:30:00Z"
+    },
+    {
+      "id": "u003",
+      "username": "创新教育",
+      "email": "innovation.edu@example.com",
+      "type": "startup",
+      "verified": false,
+      "profile": {
+        "description": "教育科技创业团队，致力于用技术改变教育",
+        "location": "深圳市",
+        "website": null
+      },
+      "stats": {
+        "demands_posted": 3,
+        "resources_provided": 1,
+        "collaborations": 4
+      },
+      "created_at": "2023-11-10T09:15:00Z"
+    },
+    {
+      "id": "u004",
+      "username": "书香校园",
+      "email": "book.campus@example.com",
+      "type": "community",
+      "verified": true,
+      "profile": {
+        "description": "高校图书捐赠与阅读推广社团",
+        "location": "武汉市",
+        "website": null
+      },
+      "stats": {
+        "demands_posted": 6,
+        "resources_provided": 15,
+        "collaborations": 18
+      },
+      "created_at": "2023-09-01T11:45:00Z"
+    },
+    {
+      "id": "u005",
+      "username": "温暖社区",
+      "email": "warm.community@example.com",
+      "type": "community",
+      "verified": true,
+      "profile": {
+        "description": "社区志愿服务团体，关爱老人与儿童",
+        "location": "成都市",
+        "website": null
+      },
+      "stats": {
+        "demands_posted": 10,
+        "resources_provided": 5,
+        "collaborations": 30
+      },
+      "created_at": "2023-07-22T16:00:00Z"
+    }
+  ]
+}

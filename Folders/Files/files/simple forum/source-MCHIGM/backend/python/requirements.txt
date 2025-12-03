@@ -1,0 +1,25 @@
+# Python Backend Dependencies
+
+# Web Framework
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# API and utilities
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Code quality
+flake8>=6.0.0
+black>=23.0.0
