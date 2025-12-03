@@ -1,0 +1,117 @@
+name: Sync with source-MCHIGM
+
+on:
+  # Run when source-MCHIGM repo is updated (requires webhook/repository_dispatch)
+  repository_dispatch:
+    types: [source-mchigm-updated]
+  
+  # Manual trigger
+  workflow_dispatch:
+  
+  # Scheduled sync (every 6 hours)
+  schedule:
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Checkout source-MCHIGM
+        uses: actions/checkout@v4
+        with:
+          repository: mchigm/source-MCHIGM
+          path: temp-source-mchigm
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Sync files with source protection
+        run: |
+          # Source protection: only update files that match source history or are new
+          EMBEDDED_PATH="Folders/Files/files/simple forum/source-MCHIGM"
+          SOURCE_PATH="temp-source-mchigm"
+          
+          # Create protection report
+          echo "=== Source Protection Check ===" > /tmp/sync-report.txt
+          
+          # Check each file in source repo
+          cd "$SOURCE_PATH"
+          find . -type f -not -path "./.git/*" | while read -r file; do
+            rel_path="${file#./}"
+            embedded_file="../$EMBEDDED_PATH/$rel_path"
+            
+            if [ ! -f "$embedded_file" ]; then
+              # New file - safe to add
+              echo "✨ NEW: $rel_path" >> /tmp/sync-report.txt
+              mkdir -p "$(dirname "../$EMBEDDED_PATH/$rel_path")"
+              cp "$rel_path" "../$EMBEDDED_PATH/$rel_path"
+            else
+              # File exists - check if it matches source history
+              embedded_hash=$(sha256sum "$embedded_file" | cut -d' ' -f1)
+              source_hash=$(sha256sum "$rel_path" | cut -d' ' -f1)
+              
+              if [ "$embedded_hash" = "$source_hash" ]; then
+                # Identical - skip
+                echo "⏭️  SKIP: $rel_path (identical)" >> /tmp/sync-report.txt
+              else
+                # Check if embedded version exists in git history
+                historical_match=false
+                
+                # Get all commits that touched this file
+                git log --all --pretty=format:"%H" -- "$rel_path" | while read -r commit; do
+                  if git show "$commit:$rel_path" > /tmp/temp-file 2>/dev/null; then
+                    hist_hash=$(sha256sum /tmp/temp-file | cut -d' ' -f1)
+                    if [ "$embedded_hash" = "$hist_hash" ]; then
+                      historical_match=true
+                      break
+                    fi
+                  fi
+                done
+                
+                if [ "$historical_match" = "true" ]; then
+                  # Matches history - safe to update
+                  echo "✓ UPDATE: $rel_path" >> /tmp/sync-report.txt
+                  cp "$rel_path" "../$EMBEDDED_PATH/$rel_path"
+                else
+                  # Diverged - PROTECTED
+                  echo "🔒 PROTECTED: $rel_path (diverged from source)" >> /tmp/sync-report.txt
+                fi
+              fi
+            fi
+          done
+          
+          cd ..
+          
+          # Display report
+          cat /tmp/sync-report.txt
+          
+          # Clean up
+          rm -rf temp-source-mchigm
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add "Folders/Files/files/simple forum/source-MCHIGM"
+          
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected"
+          fi
+      
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git commit -m "Auto-sync from source-MCHIGM [skip ci]"
+          git push
