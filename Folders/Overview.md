@@ -1,3 +1,5 @@
+> Original filename: README.md
+
 # Chen Yueming's Official Website
 
 [Visit the website](https://mchigm.github.io)
@@ -22,7 +24,7 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
 ├── .vscode/                # Editor settings
 ├── .git/                   # Git repository data
 └── Folders/                # Organized content directory
-    ├── README.md           # This file
+    ├── Overview.md         # This file (originally README.md)
     ├── TOC.md              # Detailed file structure documentation
     ├── Files/              # Website files and content
     │   ├── mobilewebsite.html    # Mobile-optimized version
@@ -50,7 +52,9 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
     │       │   ├── self-test-popup.md
     │       │   └── test-popupsite.md
     │       └── simple forum/
-    │           └── source-MCHIGM/     # Forum (Source) subrepository, please go to [source-MCHIGM](https://github.com/mchigm/source-MCHIGM) Repository for more information
+    │           └── source-MCHIGM/     # Forum (Source) subrepository
+    │                                  # See https://github.com/mchigm/source-MCHIGM for details
+    │                                  # Files renamed from README.md to descriptive names
     └── etc/                # Miscellaneous and archived files
         ├── Resume Yueming Bryan 202509.pages
         ├── business-card.html
@@ -65,4 +69,16 @@ For detailed documentation about the folder structure, see [TOC.md](TOC.md).
 
 *Thanks to [Font Awesome](https://fontawesome.com/) for the icons*
 
-*Last updated: 2025-11-12*
+Last updated: 2025-12-03
+
+---
+
+## Note on source-MCHIGM Submodule
+
+The forum project under `Files/files/simple forum/source-MCHIGM/` is a Git submodule. All README.md files and certain other files within this submodule have been systematically renamed to descriptive English names with original filename annotations. For example:
+- `About.md` → `Project_Summary.md`
+- `项目远景.md` → `Project_Vision.md`
+- `CONTRIBUTING.md` → `Contributing_Guide.md`
+- Various `README.md` files → descriptive names like `Backend_Documentation.md`, `Frontend-Overview.md`, etc.
+
+For complete details about the submodule structure, visit: https://github.com/mchigm/source-MCHIGM

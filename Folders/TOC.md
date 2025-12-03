@@ -67,9 +67,18 @@ Abstract organizational folders for special features:
 - **popup-pages/** - Pop-up site functionality and content
   - pop-up.htm - Pop-up pages index
   - popup-viewer.html - Markdown viewer for pop-up content
+  - minecraft-challenge.md - Minecraft challenge content
+  - self-test-popup.md - Self-test pop-up content
   - test-popupsite.md - Test/demo pop-up page
   - popup-manager.ts - TypeScript module for popup management
   - popup-manager.js - Compiled JavaScript from TypeScript
+
+- **simple forum/** - Forum subproject directory
+  - **source-MCHIGM/** - Git submodule for forum platform (see https://github.com/mchigm/source-MCHIGM)
+    - Files in this submodule have been renamed from generic names (README.md, About.md) to descriptive names
+    - All renamed files include original filename annotations
+    - Main files: Project_Summary.md, Project_Vision.md, Contributing_Guide.md, Implementation_Verification.md
+    - Directory structure includes: backend/, frontend/, docs/, config/, examples/
 
 ## Etc Directory (`./Folders/etc/`)
 

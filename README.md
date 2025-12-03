@@ -24,7 +24,7 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
 ├── .idea/                              # IDE metadata (optional)
 ├── .git/                               # Git repository data
 └── Folders/                            # Organized content directory
-    ├── README.md                       # Folder-level overview
+    ├── Overview.md                     # Folder-level overview (originally README.md)
     ├── TOC.md                          # Detailed file structure documentation
     ├── Files/                          # Website files and content
     │   ├── mobilewebsite.html          # Mobile-optimized version
@@ -52,35 +52,41 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
     │       │   ├── self-test-popup.md
     │       │   └── test-popupsite.md
     │       └── simple forum/           # Source forum subproject root [WIP]
-    │           └── source-MCHIGM/      # Forum project (nested repo)
+    │           └── source-MCHIGM/      # Forum project (submodule)
+    │               ├── .gitignore
     │               ├── LICENSE
-    │               ├── README.md       # Forum main README
-    │               ├── backend/        # Backend implementations
-    │               │   ├── php/        # PHP prototype
-    │               │   └── python/     # Python services
-    │               ├── config/         # Configuration examples
+    │               ├── Project_Summary.md           # Project summary (orig. About.md)
+    │               ├── Project_Vision.md            # Vision document (orig. 项目远景.md)
+    │               ├── Contributing_Guide.md        # Contribution guidelines (orig. CONTRIBUTING.md)
+    │               ├── Implementation_Verification.md  # Implementation status (orig. IMPLEMENTATION_VERIFICATION.md)
+    │               ├── backend/                # Backend implementations
+    │               │   ├── Backend_Documentation.md  # Backend docs (orig. README.md)
+    │               │   ├── php/                # PHP prototype
+    │               │   └── python/             # Python services
+    │               ├── config/                 # Configuration examples
     │               │   └── config.example.yml
-    │               ├── docs/           # Documentation
-    │               │   ├── api/        # API specs
-    │               │   ├── deployment.md
-    │               │   └── progress/   # Progress tracking docs
-    │               ├── examples/       # Usage examples & sample data
-    │               │   ├── README.md
+    │               ├── docs/                   # Documentation
+    │               │   ├── Deployment_Guide.md      # Deployment guide (orig. deployment.md)
+    │               │   ├── api/
+    │               │   │   └── API_Documentation.md  # API docs (orig. README.md)
+    │               │   └── progress/
+    │               │       └── Progress_Log.md      # Progress log (orig. README.md)
+    │               ├── examples/               # Usage examples & sample data
+    │               │   ├── Examples-Overview.md     # Examples overview (orig. README.md)
     │               │   └── data/
-    │               ├── frontend/       # Forum frontend app
-    │               │   ├── README.md   # Frontend overview
-    │               │   ├── package.json
-    │               │   ├── tsconfig.json
-    │               │   ├── src/
-    │               │   │   ├── api.ts
-    │               │   │   ├── main.ts
-    │               │   │   ├── types.ts
-    │               │   │   └── utils.ts
-    │               │   └── public/
-    │               │       ├── index.html
-    │               │       └── styles/
-    │               │           └── main.css
-    │               └── IMPLEMENTATION_VERIFICATION.md
+    │               └── frontend/               # Forum frontend app
+    │                   ├── Frontend-Overview.md     # Frontend overview (orig. README.md)
+    │                   ├── package.json
+    │                   ├── tsconfig.json
+    │                   ├── src/
+    │                   │   ├── api.ts
+    │                   │   ├── main.ts
+    │                   │   ├── types.ts
+    │                   │   └── utils.ts
+    │                   └── public/
+    │                       ├── index.html
+    │                       └── styles/
+    │                           └── main.css
     └── etc/                          # Miscellaneous and archived files
         ├── Resume Yueming Bryan 202509.pages
         ├── business-card.html
@@ -165,7 +171,7 @@ For creating new pages based on the site template, refer to the original templat
 
 *Thanks to [Font Awesome](https://fontawesome.com/) for the icons*
 
-Last updated: 2025-12-02
+Last updated: 2025-12-03
 
 ---
 ### Subproject: Source Forum (`simple forum/source-MCHIGM`)
