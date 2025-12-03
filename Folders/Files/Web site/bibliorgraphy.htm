@@ -14,6 +14,69 @@
             }
             .card:hover {box-shadow: 0 16px 128px 0 #999999;}
             img {border-radius: 5px 5px 0 0;}
+            
+            .interest-section {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 10px;
+                border-left: 5px solid #667eea;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .interest-section:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+            }
+            
+            .interest-section h2 {
+                color: #2c3e50;
+                border-bottom: 2px solid #667eea;
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .interest-section ol {
+                background: white;
+                padding: 20px 40px;
+                border-radius: 8px;
+                box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            }
+            
+            .interest-section ol li {
+                margin: 10px 0;
+                line-height: 1.6;
+            }
+            
+            .interest-section legend {
+                background: #667eea;
+                color: white;
+                padding: 8px 20px;
+                border-radius: 20px;
+                font-weight: bold;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+            
+            .github-status {
+                background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 10px;
+                border-left: 5px solid #28a745;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+            
+            .github-status::before {
+                content: "📊 ";
+                font-size: 24px;
+            }
+            
+            .github-status iframe {
+                background: white;
+                border-radius: 8px;
+                padding: 10px;
+            }
         </style>
     </head>
     <body>
@@ -24,20 +87,22 @@
             <div class="card">
                 <img src="bnbpythoninc.png" alt="BnBpythoninc-logo" width="20" height="20"></img>
                 <h1>Chen Yueming 陈悦铭</h1>
-                <a href="business-card.txt" download="Chen_Yueming_Business_Card.html" title="Click to download business card">
+                <a href="business-card.txt" download="busines-card.txt" title="Click to download business card">
                     <img src="81n.png" alt="陈悦铭" style="width:100%; cursor: pointer;">
                 </a>
                 <p><i>Founder/CIO</i> at BnBpython</p>
                 <p><i>Emal(work)</i>: <a href="mailto:yuemingdd@gmail.com">yuemingdd@gmail.com</a></p>
                 <p><i>Del. / Fax</i><button onclick="copyDel()"><a href="+85269981753">(+852) 6998  1753</a></button></p>
             </div>
-            <li>
+            <li class="interest-section">
                 <h2>Personal interests</h2>
                 <ol>
                     <li>Microscopic Theoretical Physics</li>
                     <li>Applications of Machine Learning (ML) models and quantum/cloud computing</li>
                     <li>Python/Mojo lang/C#/HolyC/Java/Scratch base language tests, graphics&UI integrations and gamedesign</li>
                 </ol>
+            </li>
+            <li class="interest-section">
                 <h2>Academic interests</h2>
                 <ol>
                     <li>Mathmatics, exclusively for linear algebra, topology, statistics and multivariable calculus</li>
@@ -50,8 +115,12 @@
                     <li>Economy, in Game Theory, and Virtual Assets</li>
                     <li>Social Science and Cryptology</li>
                 </ol>
+            </li>
+            <li class="interest-section">
                 <h2>Research interests</h2>
                 <legend>TO BE DECIDED</legend>
+            </li>
+            <li class="interest-section">
                 <h2>Career interests</h2>
                 <ol>
                     <li>AI for science</li>
@@ -59,7 +128,7 @@
                     <li>Interdisciplinary engineering</li>
                 </ol>
             </li>
-            <li>Github status: <iframe src="https://www.github.io/mchigm/mchigm/status.md"></iframe></li>
+            <li class="github-status"><h2 style="color: white; margin-bottom: 15px;">📊 GitHub Status</h2><img src="https://github-readme-stats.vercel.app/api?username=mchigm&show_icons=true&theme=dark&hide_border=true" alt="GitHub Stats" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);"><br><br><!-- <img src="https://github-readme-streak-stats.herokuapp.com/?user=mchigm&theme=dark&hide_border=true" alt="GitHub Streak" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);"> --></li>
             <li>
                 <h2>Fun facts about me</h2>
                 <p>My favourite ...:</p>

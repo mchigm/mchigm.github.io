@@ -1,0 +1,65 @@
+{
+  "name": "universal-preview",
+  "displayName": "Universal File Preview",
+  "description": "Preview Markdown, PDF, Office, TeX, and Web files locally with live edit support.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "universalPreview.open",
+        "title": "Universal Preview: Open Preview",
+        "icon": "$(preview)"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "universalPreview.open",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "universalPreview.open",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Universal Preview",
+      "properties": {
+        "universalPreview.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time preview refresh when editing."
+        },
+        "universalPreview.refreshDelay": {
+          "type": "number",
+          "default": 300,
+          "description": "Delay in milliseconds before refreshing the preview."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^16.x",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "markdown-it": "^13.0.1"
+  }
+}
