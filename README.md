@@ -24,7 +24,11 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
 ├── .idea/                              # IDE metadata (optional)
 ├── .git/                               # Git repository data
 └── Folders/                            # Organized content directory
+<<<<<<< HEAD
     ├── Overview.md                     # Folder-level overview (originally README.md)
+=======
+    ├── README.md                       # Folder-level overview
+>>>>>>> 0e0505a90c86955572f8e884f41766789c3dd6bb
     ├── TOC.md                          # Detailed file structure documentation
     ├── Files/                          # Website files and content
     │   ├── mobilewebsite.html          # Mobile-optimized version
@@ -52,6 +56,7 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
     │       │   ├── self-test-popup.md
     │       │   └── test-popupsite.md
     │       └── simple forum/           # Source forum subproject root [WIP]
+<<<<<<< HEAD
     │           └── source-MCHIGM/      # Forum project (submodule)
     │               ├── .gitignore
     │               ├── LICENSE
@@ -87,6 +92,37 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
     │                       ├── index.html
     │                       └── styles/
     │                           └── main.css
+=======
+    │           └── source-MCHIGM/      # Forum project (nested repo)
+    │               ├── LICENSE
+    │               ├── README.md       # Forum main README
+    │               ├── backend/        # Backend implementations
+    │               │   ├── php/        # PHP prototype
+    │               │   └── python/     # Python services
+    │               ├── config/         # Configuration examples
+    │               │   └── config.example.yml
+    │               ├── docs/           # Documentation
+    │               │   ├── api/        # API specs
+    │               │   ├── deployment.md
+    │               │   └── progress/   # Progress tracking docs
+    │               ├── examples/       # Usage examples & sample data
+    │               │   ├── README.md
+    │               │   └── data/
+    │               ├── frontend/       # Forum frontend app
+    │               │   ├── README.md   # Frontend overview
+    │               │   ├── package.json
+    │               │   ├── tsconfig.json
+    │               │   ├── src/
+    │               │   │   ├── api.ts
+    │               │   │   ├── main.ts
+    │               │   │   ├── types.ts
+    │               │   │   └── utils.ts
+    │               │   └── public/
+    │               │       ├── index.html
+    │               │       └── styles/
+    │               │           └── main.css
+    │               └── IMPLEMENTATION_VERIFICATION.md
+>>>>>>> 0e0505a90c86955572f8e884f41766789c3dd6bb
     └── etc/                          # Miscellaneous and archived files
         ├── Resume Yueming Bryan 202509.pages
         ├── business-card.html
@@ -171,7 +207,11 @@ For creating new pages based on the site template, refer to the original templat
 
 *Thanks to [Font Awesome](https://fontawesome.com/) for the icons*
 
+<<<<<<< HEAD
 Last updated: 2025-12-03
+=======
+Last updated: 2025-12-02
+>>>>>>> 0e0505a90c86955572f8e884f41766789c3dd6bb
 
 ---
 ### Subproject: Source Forum (`simple forum/source-MCHIGM`)
