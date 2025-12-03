@@ -1,0 +1,48 @@
+# Jekyll configuration for GitHub Pages
+
+# Exclude files and directories from processing
+exclude:
+  - node_modules/
+  - vendor/
+  - .git/
+  - .github/
+  - .gitignore
+  - .vscode/
+  - .idea/
+  - README.md
+  - sync-source-mchigm.ps1
+  - tsconfig.json
+  - "*.ts"
+  - Folders/Files/files/simple forum/
+  - Folders/Overview.md
+  - Folders/TOC.md
+
+# Keep these files
+include:
+  - index.html
+  - .htaccess
+
+# Disable Jekyll processing for static HTML site
+# (GitHub Pages will still serve the files)
+markdown: kramdown
+plugins:
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+
+# Relative links settings
+relative_links:
+  enabled: true
+  collections: false
+
+# Only process these markdown files
+include:
+  - Folders/Files/files/popup-pages/*.md
+
+# Disable automatic title generation for most files
+titles_from_headings:
+  enabled: false
+  strip_title: false
+  collections: false
