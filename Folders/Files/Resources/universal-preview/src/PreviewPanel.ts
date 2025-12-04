@@ -1,6 +1,11 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 
+// Use require for libraries that might lack types or to simplify setup
+const mammoth = require('mammoth');
+const XLSX = require('xlsx');
+const JSZip = require('jszip');
+
 export class PreviewPanel {
     public static currentPanel: PreviewPanel | undefined;
     public static readonly viewType = 'universalPreview';
@@ -16,14 +21,12 @@ export class PreviewPanel {
             ? vscode.ViewColumn.Beside
             : vscode.ViewColumn.One;
 
-        // If we already have a panel, show it.
         if (PreviewPanel.currentPanel) {
             PreviewPanel.currentPanel._panel.reveal(column);
             PreviewPanel.currentPanel.updateResource(resource);
             return;
         }
 
-        // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             PreviewPanel.viewType,
             `Preview: ${path.basename(resource.fsPath)}`,
@@ -48,14 +51,10 @@ export class PreviewPanel {
         this._extensionUri = extensionUri;
         this._resource = resource;
 
-        // Set the webview's initial html content
         this._update();
 
-        // Listen for when the panel is disposed
-        // This happens when the user closes the panel or when the panel is closed programmatically
         this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
-        // Update the content based on view changes
         this._panel.onDidChangeViewState(
             e => {
                 if (this._panel.visible) {
@@ -66,7 +65,6 @@ export class PreviewPanel {
             this._disposables
         );
 
-        // Handle messages from the webview
         this._panel.webview.onDidReceiveMessage(
             message => {
                 switch (message.command) {
@@ -79,7 +77,6 @@ export class PreviewPanel {
             this._disposables
         );
 
-        // Listen for file changes
         vscode.workspace.onDidChangeTextDocument(e => {
             if (e.document.uri.toString() === this._resource.toString()) {
                 this.triggerUpdate();
@@ -116,10 +113,7 @@ export class PreviewPanel {
 
     public dispose() {
         PreviewPanel.currentPanel = undefined;
-
-        // Clean up our resources
         this._panel.dispose();
-
         while (this._disposables.length) {
             const x = this._disposables.pop();
             if (x) {
@@ -141,56 +135,137 @@ export class PreviewPanel {
         let content = '';
         
         try {
-            // Basic content generation based on file type
+            // Read file content
+            // For text formats, we might want text. For binary, we want buffer.
+            // We'll read as buffer first for most things.
+            const fileBuffer = await vscode.workspace.fs.readFile(this._resource);
+            const buffer = Buffer.from(fileBuffer);
+            
+            // Check for PDF signature or extension
+            const isPdf = ext === '.pdf' || (buffer.length > 4 && buffer.toString('utf8', 0, 5) === '%PDF-');
+
             if (ext === '.md') {
-                const doc = await vscode.workspace.openTextDocument(this._resource);
-                // Simple markdown parsing (in real app, use markdown-it)
-                // We'll just wrap in pre for now to avoid dependency issues in this snippet, 
-                // but user can npm install markdown-it
-                content = this.renderMarkdown(doc.getText());
+                const text = buffer.toString('utf8');
+                content = this.renderMarkdown(text);
             } else if (ext === '.html' || ext === '.htm' || ext === '.php') {
-                const doc = await vscode.workspace.openTextDocument(this._resource);
-                // For HTML, we can inject it directly, but need to handle relative paths
-                // Using a base tag
+                const text = buffer.toString('utf8');
                 const baseUri = webview.asWebviewUri(vscode.Uri.file(path.dirname(resourcePath)));
                 content = `
                     <base href="${baseUri}/">
-                    ${doc.getText()}
+                    ${text}
                 `;
-                return content; // Return directly for HTML to preserve structure
-            } else if (ext === '.pdf') {
-                // PDF Preview using embed
-                const pdfUri = webview.asWebviewUri(this._resource);
+                return content;
+            } else if (isPdf) {
+                // Render PDF using embed with data URI to support raw content
+                const base64 = buffer.toString('base64');
+                const dataUri = `data:application/pdf;base64,${base64}`;
                 content = `
-                    <embed src="${pdfUri}" width="100%" height="100%" type="application/pdf">
-                    <p>If PDF does not appear, <a href="${pdfUri}">click here to download</a>.</p>
+                    <embed src="${dataUri}" width="100%" height="100%" type="application/pdf">
+                    <p>If PDF does not appear, <a href="${dataUri}" download="${filename}">click here to download</a>.</p>
                 `;
                 return this.wrapHtml(content, filename);
             } else if (['.png', '.jpg', '.jpeg', '.gif', '.svg'].includes(ext)) {
                 const imgUri = webview.asWebviewUri(this._resource);
                 content = `<div style="display:flex;justify-content:center;align-items:center;height:100%"><img src="${imgUri}" style="max-width:100%;max-height:100%"></div>`;
             } else if (ext === '.csv') {
-                const doc = await vscode.workspace.openTextDocument(this._resource);
-                content = this.renderCsv(doc.getText());
-            } else if (['.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx', '.pages'].includes(ext)) {
-                content = `
+                const text = buffer.toString('utf8');
+                content = this.renderCsv(text);
+            } else if (ext === '.docx') {
+                // Use mammoth for docx
+                try {
+                    const result = await mammoth.convertToHtml({ buffer: buffer });
+                    content = `<div class="document-content">${result.value}</div>`;
+                    if (result.messages && result.messages.length > 0) {
+                        content += `<div class="warnings"><h3>Warnings:</h3><ul>${result.messages.map((m: any) => `<li>${m.message}</li>`).join('')}</ul></div>`;
+                    }
+                } catch (e) {
+                    content = `<p>Error rendering DOCX: ${e}</p>`;
+                }
+            } else if (['.xlsx', '.xls', '.ods'].includes(ext)) {
+                // Use XLSX (SheetJS)
+                try {
+                    const workbook = XLSX.read(buffer, { type: 'buffer' });
+                    const sheetName = workbook.SheetNames[0];
+                    const sheet = workbook.Sheets[sheetName];
+                    const html = XLSX.utils.sheet_to_html(sheet);
+                    content = `<div class="spreadsheet-content">${html}</div>`;
+                } catch (e) {
+                    content = `<p>Error rendering Spreadsheet: ${e}</p>`;
+                }
+            } else if (['.pages', '.key', '.numbers'].includes(ext)) {
+                // Apple formats (Zip based) - Try to extract QuickLook/Preview.jpg
+                try {
+                    const zip = await JSZip.loadAsync(buffer);
+                    const previewFile = zip.file('QuickLook/Preview.jpg');
+                    if (previewFile) {
+                        const base64 = await previewFile.async('base64');
+                        content = `
+                            <div style="text-align:center">
+                                <h2>Apple ${ext.substring(1).toUpperCase()} Preview</h2>
+                                <img src="data:image/jpeg;base64,${base64}" style="max-width:100%; box-shadow: 0 0 10px rgba(0,0,0,0.5);" />
+                            </div>`;
+                    } else {
+                        content = `<p>No preview image found in this Apple document.</p>`;
+                    }
+                } catch (e) {
+                    content = `<p>Error reading Apple document: ${e}</p>`;
+                }
+            } else if (['.odt', '.odp', '.ods'].includes(ext)) {
+                // OpenOffice (Zip based) - Try thumbnail
+                try {
+                    const zip = await JSZip.loadAsync(buffer);
+                    const thumb = zip.file('Thumbnails/thumbnail.png');
+                    if (thumb) {
+                        const base64 = await thumb.async('base64');
+                        content = `
+                            <div style="text-align:center">
+                                <h2>OpenOffice Preview</h2>
+                                <img src="data:image/png;base64,${base64}" style="max-width:100%;" />
+                            </div>`;
+                    } else {
+                        // Fallback: try to read content.xml (very basic)
+                        const contentXml = zip.file('content.xml');
+                        if (contentXml) {
+                            const xmlText = await contentXml.async('string');
+                            // Strip tags for a rough text preview
+                            const text = xmlText.replace(/<[^>]+>/g, ' ');
+                            content = `<div style="padding:20px"><h3>Text Content Preview</h3><p>${text.substring(0, 2000)}...</p></div>`;
+                        } else {
+                            content = `<p>No preview available for this OpenOffice document.</p>`;
+                        }
+                    }
+                } catch (e) {
+                    content = `<p>Error reading OpenOffice document: ${e}</p>`;
+                }
+            } else if (['.doc', '.ppt'].includes(ext)) {
+                 content = `
                     <div style="padding: 20px; text-align: center;">
-                        <h2>Office File Preview</h2>
+                        <h2>Legacy Office File</h2>
                         <p>Previewing <b>${filename}</b></p>
-                        <p><i>Note: Full rendering of Office files requires external libraries (e.g. mammoth.js for docx).</i></p>
-                        <p>Currently showing raw text extraction stub.</p>
+                        <p>Legacy binary formats (.doc, .ppt) are not fully supported. Please save as .docx/.pptx for better preview.</p>
                     </div>
                 `;
             } else if (['.tex', '.bib'].includes(ext)) {
-                 const doc = await vscode.workspace.openTextDocument(this._resource);
+                 const text = buffer.toString('utf8');
                  content = `
                     <div style="padding: 20px;">
                         <h2>TeX/Bib Preview</h2>
-                        <pre>${this.escapeHtml(doc.getText())}</pre>
+                        <pre>${this.escapeHtml(text)}</pre>
                     </div>
                  `;
             } else {
-                content = `<p>Preview not supported for <b>${ext}</b> files.</p>`;
+                // Try to detect if it's a text file
+                try {
+                    const text = buffer.toString('utf8');
+                    // Heuristic: if it has too many null bytes, it's binary
+                    if (text.includes('\0') && text.split('\0').length > 10) {
+                         content = `<p>Preview not supported for this binary file type.</p>`;
+                    } else {
+                        content = `<pre>${this.escapeHtml(text)}</pre>`;
+                    }
+                } catch {
+                    content = `<p>Preview not supported for <b>${ext}</b> files.</p>`;
+                }
             }
         } catch (error) {
             content = `<p>Error loading preview: ${error}</p>`;
@@ -212,7 +287,10 @@ export class PreviewPanel {
                     table { border-collapse: collapse; width: 100%; }
                     th, td { border: 1px solid var(--vscode-panel-border); padding: 8px; text-align: left; }
                     th { background-color: var(--vscode-editor-selectionBackground); }
-                    pre { white-space: pre-wrap; }
+                    pre { white-space: pre-wrap; padding: 10px; }
+                    .document-content { padding: 20px; max-width: 800px; margin: 0 auto; background: white; color: black; min-height: 100%; }
+                    .spreadsheet-content { padding: 10px; overflow: auto; }
+                    img { max-width: 100%; }
                 </style>
             </head>
             <body>
@@ -224,8 +302,6 @@ export class PreviewPanel {
     }
 
     private renderMarkdown(text: string): string {
-        // Basic markdown replacement for demo purposes
-        // In production, use 'markdown-it'
         let html = this.escapeHtml(text)
             .replace(/^# (.*$)/gm, '<h1>$1</h1>')
             .replace(/^## (.*$)/gm, '<h2>$1</h2>')

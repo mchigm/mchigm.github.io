@@ -2,115 +2,109 @@
 
 This document describes the folder structure of the mchigm.github.io repository.
 
-## Root Directory (`./`)
+## Repository Tree
 
-The root directory contains only essential files for the main website:
+```text
+./
+├── index.html
+├── style.css
+├── main.js
+├── utils.js
+├── utils.ts
+├── tsconfig.json
+├── README.md
+├── .gitignore
+├── .vscode/
+├── .git/
+└── Folders/
+    ├── Overview.md
+    ├── TOC.md
+    ├── Files/
+    │   ├── mobilewebsite.html
+    │   ├── Web site/
+    │   │   ├── bibliorgraphy.htm
+    │   │   ├── internship.htm
+    │   │   ├── researches.htm
+    │   │   ├── works.htm
+    │   │   ├── resources.html
+    │   │   └── projects.htm
+    │   ├── Documents/
+    │   │   └── Personalized_Generative_Model_via_Active_Learning.pdf
+    │   ├── Resources/
+    │   │   ├── business-card.pdf
+    │   │   ├── 20240412-方正证券-多因子选股系列研究之十七：新闻中的有限注意力和“凸显效应”因子构建.pdf
+    │   │   └── 中信建投-大数据人工智能研究之六：机器学习因子有效性分析.pdf
+    │   └── files/
+    │       ├── popup-pages/
+    │       │   ├── pop-up.htm
+    │       │   ├── popup-viewer.html
+    │       │   ├── popup-manager.js
+    │       │   ├── popup-manager.ts
+    │       │   ├── minecraft-challenge.md
+    │       │   ├── self-test-popup.md
+    │       │   ├── universal-preview-alpha.md
+    │       │   └── test-popupsite.md
+    │       └── simple forum/
+    │           └── source-MCHIGM/
+    │               ├── Contributing_Guide.md
+    │               ├── Implementation_Verification.md
+    │               ├── Project_Summary.md
+    │               ├── Project_Vision.md
+    │               ├── backend/
+    │               │   ├── Backend_Documentation.md
+    │               │   ├── php/
+    │               │   │   ├── composer.json
+    │               │   │   └── src/
+    │               │   │       ├── index.php
+    │               │   │       ├── Models/
+    │               │   │       │   ├── Demand.php
+    │               │   │       │   └── Resource.php
+    │               │   │       └── Services/
+    │               │   │           └── MatchingService.php
+    │               │   └── python/
+    │               │       ├── app.py
+    │               │       └── src/
+    │               │           ├── __init__.py
+    │               │           └── analytics/
+    │               │               ├── __init__.py
+    │               │               ├── reports.py
+    │               │               └── statistics.py
+    │               ├── config/
+    │               │   └── config.example.yml
+    │               ├── docs/
+    │               │   ├── Deployment_Guide.md
+    │               │   ├── api/
+    │               │   │   └── API_Documentation.md
+    │               │   └── progress/
+    │               │       └── Progress_Log.md
+    │               ├── examples/
+    │               │   ├── Examples-Overview.md
+    │               │   └── data/
+    │               │       ├── demands.json
+    │               │       ├── resources.json
+    │               │       └── users.json
+    │               └── frontend/
+    │                   ├── Frontend-Overview.md
+    │                   ├── package.json
+    │                   ├── tsconfig.json
+    │                   ├── public/
+    │                   │   ├── index.html
+    │                   │   └── styles/
+    │                   │       └── main.css
+    │                   └── src/
+    │                       ├── api.ts
+    │                       ├── main.ts
+    │                       ├── types.ts
+    │                       └── utils.ts
+    └── etc/
+        ├── Resume Yueming Bryan 202509.pages
+        ├── business-card.html
+        ├── bnbpythoninc.png
+        ├── dbSettings.json
+        └── main.php
+```
 
-- **index.html** - Main landing page of the website
-- **style.css** - Main stylesheet for the website
-- **main.js** - Common JavaScript functions used across all webpages
-- **utils.ts** - TypeScript utility functions (compiled to utils.js)
-- **utils.js** - Compiled JavaScript utilities from TypeScript
-- **tsconfig.json** - TypeScript compiler configuration
-- **.gitignore** - Git ignore configuration file
-- **Folders/** - Directory containing all organized content
+## Notes
 
-## Folders Directory (`./Folders/`)
-
-Main organizational directory containing:
-
-- **TOC.md** - This file - documentation about the folder structure
-- **README.md** - Repository README file
-- **Files/** - Directory for website files and content
-- **etc/** - Directory for miscellaneous, archived, and utility files
-
-## Files Directory (`./Folders/Files/`)
-
-Contains organized website content:
-
-- **mobilewebsite.html** - Mobile-optimized version of the website
-- **Web site/** - Main website content files
-- **Documents/** - Academic documents and publications
-- **Resources/** - PDF and other resource files
-- **files/** - Abstract folders for special features (e.g., pop-up pages)
-
-## Web Site Directory (`./Folders/Files/Web site/`)
-
-Main content pages:
-
-- **81n.png** - Profile photo
-- **bibliorgraphy.htm** - Bibliography page
-- **internship.htm** - Internship experience page
-- **researches.htm** - Current research projects
-- **works.htm** - Current work and projects
-- **resources.html** - Resources and links page
-- **projects.htm** - Projects list page
-
-## Documents Directory (`./Folders/Files/Documents/`)
-
-Academic publications:
-
-- **Personalized_Generative_Model_via_Active_Learning.pdf** - First SCI journal publication
-
-## Resources Directory (`./Folders/Files/Resources/`)
-
-Contains PDF files and other resources:
-
-- Various PDF documents
-- EPUB files (if any)
-- Research papers and references
-
-## Files Subdirectory (`./Folders/Files/files/`)
-
-Abstract organizational folders for special features:
-
-- **popup-pages/** - Pop-up site functionality and content
-  - pop-up.htm - Pop-up pages index
-  - popup-viewer.html - Markdown viewer for pop-up content
-  - minecraft-challenge.md - Minecraft challenge content
-  - self-test-popup.md - Self-test pop-up content
-  - test-popupsite.md - Test/demo pop-up page
-  - popup-manager.ts - TypeScript module for popup management
-  - popup-manager.js - Compiled JavaScript from TypeScript
-
-- **simple forum/** - Forum subproject directory
-  - **source-MCHIGM/** - Git submodule for forum platform (see https://github.com/mchigm/source-MCHIGM)
-    - Files in this submodule have been renamed from generic names (README.md, About.md) to descriptive names
-    - All renamed files include original filename annotations
-    - Main files: Project_Summary.md, Project_Vision.md, Contributing_Guide.md, Implementation_Verification.md
-    - Directory structure includes: backend/, frontend/, docs/, config/, examples/
-
-## Etc Directory (`./Folders/etc/`)
-
-Miscellaneous and archived files:
-
-- **Resume Yueming Bryan 202509.pages** - Resume file
-- **business-card.html** - Business card rendering page
-- **bnbpythoninc.png** - BnBpython logo/image
-- **dbSettings.json** - Database settings (legacy)
-- **main.php** - PHP script (legacy)
-
-## File Organization Principles
-
-1. **Root simplicity**: Only essential files remain in root
-2. **Logical grouping**: Related files are grouped in appropriate subdirectories
-3. **Clear naming**: Directories have descriptive, self-explanatory names
-4. **Separation of concerns**: Content, resources, and utilities are kept separate
-5. **Scalability**: Structure allows for easy addition of new content
-
-## Path References
-
-When linking to files from different locations, use relative paths:
-
-- From root to Web site files: `Folders/Files/Web site/[filename]`
-- From Web site files to root: `../../../[filename]`
-- From popup-pages to root: `../../../../[filename]`
-
-## Maintenance Notes
-
-- The TOC.md file should be updated when new directories or major file additions are made
-- Deprecated files should be moved to `Folders/etc/` rather than deleted
-- All new web content should go under `Folders/Files/Web site/` or appropriate subdirectory
-- TypeScript files (`.ts`) should be compiled to JavaScript (`.js`) before deployment
-- To compile TypeScript files, run: `tsc <filename>.ts --target ES6 --module ES6 --lib ES6,DOM`
-- Both `.ts` and `.js` files are committed to the repository for transparency
+- Paths reflect repository-relative locations.
+- For annotated mapping of original names → current names, see the “Repository Structure” section in the root README.

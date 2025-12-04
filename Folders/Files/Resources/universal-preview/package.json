@@ -3,6 +3,11 @@
   "displayName": "Universal File Preview",
   "description": "Preview Markdown, PDF, Office, TeX, and Web files locally with live edit support.",
   "version": "0.0.1",
+  "publisher": "mchigm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mchigm/mchigm.github.io"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -50,16 +55,18 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
     "@types/node": "^16.x",
+    "@types/vscode": "^1.80.0",
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "markdown-it": "^13.0.1"
+    "jszip": "^3.10.1",
+    "mammoth": "^1.11.0",
+    "markdown-it": "^13.0.1",
+    "xlsx": "^0.18.5"
   }
 }

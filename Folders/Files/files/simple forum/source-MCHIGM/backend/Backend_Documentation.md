@@ -14,27 +14,27 @@ This directory contains the backend code for the MCHIGM platform.
 ```
 backend/
 ├── php/                    # PHP application
-�?  ├── src/
-�?  �?  ├── Controllers/    # API controllers
-�?  �?  ├── Models/         # Data models
-�?  �?  ├── Services/       # Business logic services
-�?  �?  ├── Middleware/     # Request middleware
-�?  �?  └── Utils/          # Helper functions
-�?  ├── config/             # Configuration files
-�?  ├── routes/             # API routes
-�?  ├── public/             # Public entry point
-�?  �?  └── index.php
-�?  ├── composer.json       # PHP dependencies
-�?  └── README.md
+�?  ├── src/
+�?  �?  ├── Controllers/    # API controllers
+�?  �?  ├── Models/         # Data models
+�?  �?  ├── Services/       # Business logic services
+�?  �?  ├── Middleware/     # Request middleware
+�?  �?  └── Utils/          # Helper functions
+�?  ├── config/             # Configuration files
+�?  ├── routes/             # API routes
+�?  ├── public/             # Public entry point
+�?  �?  └── index.php
+�?  ├── composer.json       # PHP dependencies
+�?  └── README.md
 ├── python/                 # Python services
-�?  ├── src/
-�?  �?  ├── analytics/      # Data analysis modules
-�?  �?  ├── automation/     # Automation tasks
-�?  �?  ├── ml/             # Machine learning models
-�?  �?  └── utils/          # Utilities
-�?  ├── requirements.txt    # Python dependencies
-�?  ├── app.py              # Main application
-�?  └── README.md
+�?  ├── src/
+�?  �?  ├── analytics/      # Data analysis modules
+�?  �?  ├── automation/     # Automation tasks
+�?  �?  ├── ml/             # Machine learning models
+�?  �?  └── utils/          # Utilities
+�?  ├── requirements.txt    # Python dependencies
+�?  ├── app.py              # Main application
+�?  └── README.md
 └── README.md               # This file
 ```
 
@@ -98,7 +98,7 @@ Service will be available at `http://localhost:8001`
 
 ## API Endpoints
 
-See [API Documentation](../docs/api/README.md) for detailed API specifications.
+See [API Documentation](../docs/api/API_Documentation.md) for detailed API specifications.
 
 ### Main Endpoints
 

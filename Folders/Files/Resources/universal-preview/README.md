@@ -16,7 +16,7 @@ This extension provides a unified preview experience for various file types dire
 ## Setup
 
 1. Open this folder in VS Code.
-2. Run `npm install` to install dependencies (e.g., `markdown-it` if you add it).
+2. Install dependencies: `npm install`. Optionally add renderers: `npm install markdown-it mammoth xlsx katex`.
 3. Press `F5` to launch the Extension Development Host.
 4. Open a file (e.g., `test.md` or `test.csv`) and run the command `Universal Preview: Open Preview`.
 
@@ -32,3 +32,4 @@ To add full support for Office files (.docx, .xlsx), consider integrating librar
 - `mammoth.js` for Word documents.
 - `SheetJS` for Excel files.
 - `KaTeX` for LaTeX rendering.
+

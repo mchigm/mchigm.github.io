@@ -10,7 +10,7 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
 
 ## Repository Structure
 
-```
+```text
 ./
 ├── index.html                          # Main landing page
 ├── style.css                           # Main stylesheet
@@ -21,20 +21,14 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
 ├── README.md                           # Project README (this file)
 ├── .gitignore                          # Git ignore configuration
 ├── .vscode/                            # Editor settings
-├── .idea/                              # IDE metadata (optional)
 ├── .git/                               # Git repository data
 └── Folders/                            # Organized content directory
-<<<<<<< HEAD
     ├── Overview.md                     # Folder-level overview (originally README.md)
-=======
-    ├── README.md                       # Folder-level overview
->>>>>>> 0e0505a90c86955572f8e884f41766789c3dd6bb
     ├── TOC.md                          # Detailed file structure documentation
     ├── Files/                          # Website files and content
     │   ├── mobilewebsite.html          # Mobile-optimized version
     │   ├── Web site/                   # Main content pages
-    │   │   ├── 81n.png                 # Profile photo
-    │   │   ├── bibliorgraphy.htm       # Bibliography
+    │   │   ├── bibliorgraphy.htm       # Bibliography page
     │   │   ├── internship.htm          # Internship experience
     │   │   ├── researches.htm          # Research projects
     │   │   ├── works.htm               # Current work
@@ -44,7 +38,7 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
     │   │   └── Personalized_Generative_Model_via_Active_Learning.pdf
     │   ├── Resources/                  # PDF files and resources
     │   │   ├── business-card.pdf
-    │   │   ├── 20240412-方正证券-...有限注意力...因子构建.pdf
+    │   │   ├── 20240412-方正证券-多因子选股系列研究之十七：新闻中的有限注意力和“凸显效应”因子构建.pdf
     │   │   └── 中信建投-大数据人工智能研究之六：机器学习因子有效性分析.pdf
     │   └── files/                      # Special features & apps
     │       ├── popup-pages/            # Pop-up site functionality
@@ -55,74 +49,39 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
     │       │   ├── minecraft-challenge.md
     │       │   ├── self-test-popup.md
     │       │   └── test-popupsite.md
-    │       └── simple forum/           # Source forum subproject root [WIP]
-<<<<<<< HEAD
-    │           └── source-MCHIGM/      # Forum project (submodule)
-    │               ├── .gitignore
-    │               ├── LICENSE
-    │               ├── Project_Summary.md           # Project summary (orig. About.md)
-    │               ├── Project_Vision.md            # Vision document (orig. 项目远景.md)
-    │               ├── Contributing_Guide.md        # Contribution guidelines (orig. CONTRIBUTING.md)
-    │               ├── Implementation_Verification.md  # Implementation status (orig. IMPLEMENTATION_VERIFICATION.md)
-    │               ├── backend/                # Backend implementations
-    │               │   ├── Backend_Documentation.md  # Backend docs (orig. README.md)
-    │               │   ├── php/                # PHP prototype
-    │               │   └── python/             # Python services
-    │               ├── config/                 # Configuration examples
+    │       └── simple forum/           # Source forum subproject root
+    │           └── source-MCHIGM/      # Forum project (converted from submodule)
+    │               ├── Contributing_Guide.md        # orig: CONTRIBUTING.md
+    │               ├── Implementation_Verification.md  # orig: IMPLEMENTATION_VERIFICATION.md
+    │               ├── Project_Summary.md           # orig: About.md
+    │               ├── Project_Vision.md            # orig: 项目远景.md
+    │               ├── backend/
+    │               │   ├── Backend_Documentation.md    # orig: README.md
+    │               │   ├── php/
+    │               │   │   ├── composer.json
+    │               │   │   └── src/
+    │               │   │       ├── index.php
+    │               │   │       └── Models/, Services/
+    │               │   └── python/
+    │               │       ├── app.py
+    │               │       └── src/analytics/
+    │               ├── config/
     │               │   └── config.example.yml
-    │               ├── docs/                   # Documentation
-    │               │   ├── Deployment_Guide.md      # Deployment guide (orig. deployment.md)
-    │               │   ├── api/
-    │               │   │   └── API_Documentation.md  # API docs (orig. README.md)
-    │               │   └── progress/
-    │               │       └── Progress_Log.md      # Progress log (orig. README.md)
-    │               ├── examples/               # Usage examples & sample data
-    │               │   ├── Examples-Overview.md     # Examples overview (orig. README.md)
+    │               ├── docs/
+    │               │   ├── Deployment_Guide.md      # orig: docs/deployment.md
+    │               │   ├── api/API_Documentation.md  # orig: README.md
+    │               │   └── progress/Progress_Log.md  # orig: README.md
+    │               ├── examples/
+    │               │   ├── Examples-Overview.md      # orig: README.md
     │               │   └── data/
-    │               └── frontend/               # Forum frontend app
-    │                   ├── Frontend-Overview.md     # Frontend overview (orig. README.md)
+    │               └── frontend/
+    │                   ├── Frontend-Overview.md      # orig: README.md
     │                   ├── package.json
     │                   ├── tsconfig.json
-    │                   ├── src/
-    │                   │   ├── api.ts
-    │                   │   ├── main.ts
-    │                   │   ├── types.ts
-    │                   │   └── utils.ts
-    │                   └── public/
-    │                       ├── index.html
-    │                       └── styles/
-    │                           └── main.css
-=======
-    │           └── source-MCHIGM/      # Forum project (nested repo)
-    │               ├── LICENSE
-    │               ├── README.md       # Forum main README
-    │               ├── backend/        # Backend implementations
-    │               │   ├── php/        # PHP prototype
-    │               │   └── python/     # Python services
-    │               ├── config/         # Configuration examples
-    │               │   └── config.example.yml
-    │               ├── docs/           # Documentation
-    │               │   ├── api/        # API specs
-    │               │   ├── deployment.md
-    │               │   └── progress/   # Progress tracking docs
-    │               ├── examples/       # Usage examples & sample data
-    │               │   ├── README.md
-    │               │   └── data/
-    │               ├── frontend/       # Forum frontend app
-    │               │   ├── README.md   # Frontend overview
-    │               │   ├── package.json
-    │               │   ├── tsconfig.json
-    │               │   ├── src/
-    │               │   │   ├── api.ts
-    │               │   │   ├── main.ts
-    │               │   │   ├── types.ts
-    │               │   │   └── utils.ts
-    │               │   └── public/
-    │               │       ├── index.html
-    │               │       └── styles/
-    │               │           └── main.css
-    │               └── IMPLEMENTATION_VERIFICATION.md
->>>>>>> 0e0505a90c86955572f8e884f41766789c3dd6bb
+    │                   ├── public/index.html
+    │                   └── src/
+    │                       ├── api.ts, main.ts, types.ts, utils.ts
+    │
     └── etc/                          # Miscellaneous and archived files
         ├── Resume Yueming Bryan 202509.pages
         ├── business-card.html
@@ -131,7 +90,7 @@ This repository contains the source code for Chen Yueming's (陈悦铭) official
         └── main.php
 ```
 
-For detailed documentation about the folder structure, see [TOC.md](TOC.md).
+For detailed documentation about the folder structure, see [TOC.md](Folders/TOC.md).
 
 ## Features
 
@@ -207,14 +166,14 @@ For creating new pages based on the site template, refer to the original templat
 
 *Thanks to [Font Awesome](https://fontawesome.com/) for the icons*
 
-<<<<<<< HEAD
 Last updated: 2025-12-03
-=======
-Last updated: 2025-12-02
->>>>>>> 0e0505a90c86955572f8e884f41766789c3dd6bb
 
 ---
+
 ### Subproject: Source Forum (`simple forum/source-MCHIGM`)
+
 Embedded under Files → `files/simple forum/source-MCHIGM`, this subdirectory hosts a developing Q&A forum with its own `frontend` and planned backend structure. The main public entry is served via:
+
 `Folders/Files/files/simple forum/source-MCHIGM/frontend/public/index.html`
+
 This is embedded in the main site "Source" tab using an `<iframe>` and shares styling separately.

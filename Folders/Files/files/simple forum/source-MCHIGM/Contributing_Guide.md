@@ -44,19 +44,22 @@ git checkout -b feature/your-feature-name
 
 #### 代码风格
 
-**TypeScript/JavaScript**
+#### TypeScript/JavaScript
+
 - 使用 2 空格缩进
 - 使用分号
 - 使用单引号
 - 遵循 ESLint 规则
 
-**PHP**
+#### PHP
+
 - 遵循 PSR-12 编码规范
 - 使用 4 空格缩进
 - 类名使用 PascalCase
 - 方法名使用 camelCase
 
-**Python**
+#### Python
+
 - 遵循 PEP 8 规范
 - 使用 4 空格缩进
 - 使用 type hints
@@ -72,7 +75,7 @@ git checkout -b feature/your-feature-name
 
 #### 提交信息格式
 
-```
+```text
 <type>(<scope>): <subject>
 
 <body>
@@ -81,6 +84,7 @@ git checkout -b feature/your-feature-name
 ```
 
 类型（type）：
+
 - `feat`: 新功能
 - `fix`: 修复 bug
 - `docs`: 文档更新
@@ -90,7 +94,8 @@ git checkout -b feature/your-feature-name
 - `chore`: 构建/工具相关
 
 示例：
-```
+
+```text
 feat(frontend): add user profile page
 
 - Created user profile component
@@ -125,11 +130,13 @@ pytest
 ### 4. 提交 Pull Request
 
 #### PR 标题格式
-```
+
+```text
 [类型] 简短描述
 ```
 
 示例：
+
 - `[Feature] 添加用户认证功能`
 - `[Fix] 修复资源列表分页问题`
 - `[Docs] 更新 API 文档`
@@ -193,6 +200,7 @@ Closes #issue_number
 ### 推荐插件
 
 **VS Code:**
+
 - ESLint
 - Prettier
 - PHP Intelephense
@@ -203,10 +211,10 @@ Closes #issue_number
 
 在贡献代码前，请先了解项目架构：
 
-1. 阅读 [README.md](./README.md)
+1. 阅读 [Project_Summary.md](./Project_Summary.md)
 2. 查看 [技术文档](./docs/)
 3. 浏览现有代码了解结构
-4. 参考 [API 文档](./docs/api/)
+4. 参考 [API 文档](./docs/api/API_Documentation.md)
 
 ## 社区准则
 
@@ -238,6 +246,7 @@ Closes #issue_number
 ## 问题反馈
 
 如有任何问题，请：
+
 1. 查看现有 Issues
 2. 阅读文档
 3. 创建新 Issue

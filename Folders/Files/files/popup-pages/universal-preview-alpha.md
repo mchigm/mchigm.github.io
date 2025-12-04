@@ -27,6 +27,7 @@ This extension is currently in **alpha testing**. We're looking for feedback!
    - The extension source code is available in this repository
 
 2. **Install & Run**
+
    ```bash
    cd Folders/Files/Resources/universal-preview
    npm install
@@ -58,6 +59,7 @@ Customize the extension in VS Code settings:
 ### 🎯 Roadmap
 
 **Coming Soon:**
+
 - [ ] Full Office file rendering (using mammoth.js, SheetJS)
 - [ ] LaTeX compilation and rendering
 - [ ] Syntax highlighting for code files
@@ -72,7 +74,7 @@ Customize the extension in VS Code settings:
 - TeX files show raw code - compilation coming in next release
 - Some PDF files may not embed properly depending on browser security settings
 
-### 💬 Feedback Wanted!
+### 💬 Feedback Wanted
 
 We need your input! Please test and let us know:
 
@@ -86,19 +88,21 @@ We need your input! Please test and let us know:
 ### 📦 Technical Details
 
 **Built With:**
+
 - TypeScript
 - VS Code Extension API
 - Webview API for rendering
 - File system watchers for live updates
 
 **Runs Completely Locally:**
+
 - No external servers required
 - All processing done in VS Code
 - Your files never leave your machine
 
 ### 🔗 Quick Links
 
-- [Extension Source Code](../Resources/universal-preview/)
+- [Extension Source Code](../../Resources/universal-preview/)
 - [Report Issues](https://github.com/mchigm/mchigm.github.io/issues)
 - [Feature Requests](https://github.com/mchigm/mchigm.github.io/issues)
 
@@ -113,27 +117,33 @@ We need your input! Please test and let us know:
 ### 🚦 Getting Started Guide
 
 #### Step 1: Open the Extension Folder
+
 ```bash
 cd e:\Pjt\Programming\mchigm.github.io\Folders\Files\Resources\universal-preview
 ```
 
 #### Step 2: Install Dependencies
+
 ```bash
 npm install
 ```
 
 #### Step 3: Launch Extension
+
 - Open the folder in VS Code
 - Press `F5` to start debugging
 - A new Extension Development Host window opens
 
 #### Step 4: Test Files
+
 Create a test file or use existing ones:
+
 - `test.md` - Try Markdown preview
 - `test.csv` - See CSV table rendering
 - `test.html` - View HTML rendering
 
 #### Step 5: Open Preview
+
 - `Ctrl+Shift+P` → Type "Universal Preview"
 - Select "Universal Preview: Open Preview"
 - Edit your file and watch it update live!

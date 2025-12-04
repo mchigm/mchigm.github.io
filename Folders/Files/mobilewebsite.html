@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Chen Yueming - Mobile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         * {
             margin: 0;
@@ -12,31 +11,79 @@
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: #f5f5f5;
             color: #333;
             padding: 10px;
+            font-size: 14px;
         }
         .header {
-            background: linear-gradient(135deg, #0f98b4 0%, #1e5799 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
+            padding: 20px 15px;
             text-align: center;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .header h1 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 5px;
         }
         .header .chinese-name {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 10px;
         }
         .header .title {
-            font-size: 14px;
+            font-size: 13px;
             opacity: 0.9;
         }
+        
+        /* Pop-up Banner */
+        .popup-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .popup-banner a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tab {
+            flex: 1;
+            padding: 12px 5px;
+            text-align: center;
+            background: #f0f0f0;
+            border: none;
+            font-size: 11px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
         .section {
             background: white;
             padding: 15px;
@@ -45,60 +92,154 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .section h2 {
-            color: #0f98b4;
-            font-size: 18px;
+            color: #667eea;
+            font-size: 16px;
             margin-bottom: 10px;
-            border-bottom: 2px solid #0f98b4;
+            border-bottom: 2px solid #667eea;
             padding-bottom: 5px;
         }
-        .section p, .section li {
+        .section h3 {
             font-size: 14px;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            color: #2c3e50;
+        }
+        .section p, .section li {
+            font-size: 13px;
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        .section ul {
+        .section ul, .section ol {
             padding-left: 20px;
         }
-        .publication {
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #f9f9f9;
-            border-left: 3px solid #0f98b4;
+        
+        /* Compact interest boxes */
+        .interest-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e7f2 100%);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
         }
-        .publication h3 {
+        .interest-box h3 {
+            color: #2c3e50;
             font-size: 14px;
-            color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
-        .publication p {
+        .interest-box ul {
             font-size: 12px;
-            color: #666;
-            margin: 3px 0;
+            padding-left: 18px;
         }
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+        .interest-box li {
+            margin: 5px 0;
         }
-        .social-links a {
-            display: inline-block;
-            padding: 8px 12px;
-            background: #0f98b4;
-            color: white;
-            text-decoration: none;
+        
+        /* GitHub Stats - optimized for mobile */
+        .github-stats {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .github-stats img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 5px 0;
+        }
+        
+        /* Programming languages table - compact */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .lang-item {
+            background: #f9f9f9;
+            padding: 8px;
             border-radius: 5px;
-            font-size: 12px;
+            font-size: 11px;
+            border-left: 3px solid #667eea;
         }
-        .social-links a:hover {
-            background: #1e5799;
+        .lang-item strong {
+            display: block;
+            color: #667eea;
+            margin-bottom: 3px;
         }
+        
         .contact-info {
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.8;
         }
         .contact-info div {
             margin: 5px 0;
+            padding: 5px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .social-links a {
+            display: block;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        /* Desktop link */
+        .desktop-link {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .desktop-link a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* Collapsible sections to save space */
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .collapsible:after {
+            content: '+';
+            float: right;
+            font-weight: bold;
+        }
+        .collapsible.active:after {
+            content: '−';
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+            border-radius: 0 0 5px 5px;
+        }
+        .collapsible-content.active {
+            max-height: 2000px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -107,63 +248,190 @@
         <h1>Chen Yueming</h1>
         <div class="chinese-name">陈悦铭</div>
         <div class="title">Founder/CIO at BnBpython</div>
-        <div class="title">Electrical Engineering Student</div>
+        <div class="title">Year-1 Electrical Engineering Student, CityU HK</div>
     </div>
 
-    <div class="section">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <div><strong>Email:</strong> yuemingdd@gmail.com</div>
-            <div><strong>Phone:</strong> (+852) 6998 1753</div>
-            <div><strong>School:</strong> City University of Hong Kong</div>
+    <div class="popup-banner">
+        <a href="files/popup-pages/pop-up.htm">📢 Pop-up Pages - Latest Updates</a>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab(0)">🏠 Home</button>
+        <button class="tab" onclick="switchTab(1)">📚 About</button>
+        <button class="tab" onclick="switchTab(2)">💬 Source</button>
+        <button class="tab" onclick="switchTab(3)">📞 Contact</button>
+    </div>
+
+    <div id="tab0" class="tab-content active">
+        <div class="section">
+            <h2>Welcome</h2>
+            <p>This is the mobile-optimized version of Chen Yueming's official website. Data usage is minimized by removing heavy iframes and images.</p>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Interests</h2>
+            <div class="interest-box">
+                <h3>Personal</h3>
+                <ul>
+                    <li>Microscopic Theoretical Physics</li>
+                    <li>Machine Learning & Quantum Computing</li>
+                    <li>Game Design & Graphics Integration</li>
+                </ul>
+            </div>
+            <div class="interest-box">
+                <h3>Academic</h3>
+                <ul>
+                    <li>Mathematics (Linear Algebra, Topology, Statistics)</li>
+                    <li>Physics (Astronomy, Nuclear Science, Quantum)</li>
+                    <li>Computer Science (Organization, Networks)</li>
+                    <li>AI in Arts</li>
+                </ul>
+            </div>
+            <div class="interest-box">
+                <h3>Career</h3>
+                <ul>
+                    <li>AI for Science</li>
+                    <li>Web 3.0</li>
+                    <li>Interdisciplinary Engineering</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 GitHub Activity</h2>
+            <div class="github-stats">
+                <p style="margin-bottom: 10px;">View my contributions and projects:</p>
+                <a href="https://github.com/mchigm" style="display: inline-block; padding: 10px 20px; background: #24292e; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Visit GitHub Profile →</a>
+                <div style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-left: 3px solid #28a745; border-radius: 5px;">
+                    <p style="font-size: 12px; color: #666; margin: 5px 0;"><strong>Public Repositories:</strong> 15+</p>
+                    <p style="font-size: 12px; color: #666; margin: 5px 0;"><strong>Focus Areas:</strong> AI, Physics, Web Development</p>
+                    <p style="font-size: 12px; color: #666; margin: 5px 0;"><strong>Languages:</strong> Python, TypeScript, C++, Rust</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Publications</h2>
-        <div class="publication">
-            <h3>Personalized Generative Model via Active Learning</h3>
-            <p><strong>Authors:</strong> Chen Yueming, Wang Junyi, Dong Yi</p>
-            <p><strong>Year:</strong> 2023 | <strong>Type:</strong> SCI Journal</p>
+    <div id="tab1" class="tab-content">
+        <div class="section">
+            <h2>Education</h2>
+            <p><strong>Current:</strong> Year-1 Electrical Engineering Student at City University of Hong Kong</p>
+            <h3>Past Education</h3>
+            <p>Pui Kiu College (2018-2024)</p>
         </div>
-        <div class="publication">
-            <h3>Optimising Truss Bridge Model via Digital Twinning</h3>
-            <p><strong>Authors:</strong> Chen Yueming, YAN Pak Shing, LUO Bicheng</p>
-            <p><strong>Year:</strong> 2025 | <strong>Type:</strong> GBA-ISPC</p>
+
+        <div class="section">
+            <h2>Internships & Experience</h2>
+            <p><strong>CityU Hong Kong</strong> - Research Assistant (2024)</p>
+            <p><strong>Shanghai Jiao Tong University</strong> - Summer Research (2023)</p>
+            <p><strong>Harvard Summit</strong> - Young Leaders Program (2023)</p>
         </div>
-        <div class="publication">
-            <h3>Identify Cancer Risk by Tongue Recognition</h3>
-            <p><strong>Authors:</strong> YAN Pak Shing, CHEN Yueming</p>
-            <p><strong>Year:</strong> 2025 | <strong>Type:</strong> GBA-ISPC</p>
+
+        <div class="section">
+            <h2>Publications</h2>
+            <div style="margin: 10px 0; padding: 10px; background: #f9f9f9; border-left: 3px solid #667eea;">
+                <strong>Personalized Generative Model via Active Learning</strong><br>
+                <small>Chen Yueming, Wang Junyi, Dong Yi | 2023 | SCI Journal</small>
+            </div>
+            <div style="margin: 10px 0; padding: 10px; background: #f9f9f9; border-left: 3px solid #667eea;">
+                <strong>Optimising Truss Bridge Model via Digital Twinning</strong><br>
+                <small>Chen Yueming, YAN Pak Shing, LUO Bicheng | 2025 | GBA-ISPC</small>
+            </div>
+            <div style="margin: 10px 0; padding: 10px; background: #f9f9f9; border-left: 3px solid #667eea;">
+                <strong>Identify Cancer Risk by Tongue Recognition</strong><br>
+                <small>YAN Pak Shing, CHEN Yueming | 2025 | GBA-ISPC</small>
+            </div>
+        </div>
+
+        <button class="collapsible">💻 Programming Languages (26+)</button>
+        <div class="collapsible-content">
+            <div class="lang-grid">
+                <div class="lang-item"><strong>Scratch</strong> 1.* / 3.*</div>
+                <div class="lang-item"><strong>Swift</strong> 2.2</div>
+                <div class="lang-item"><strong>C</strong> C99</div>
+                <div class="lang-item"><strong>Java</strong> 8</div>
+                <div class="lang-item"><strong>Python</strong> 2.3 / 3.12</div>
+                <div class="lang-item"><strong>TypeScript</strong> 2.0</div>
+                <div class="lang-item"><strong>C++</strong> 17 / 23</div>
+                <div class="lang-item"><strong>C#</strong> 7.0</div>
+                <div class="lang-item"><strong>Assembly</strong> x86_64, ARM</div>
+                <div class="lang-item"><strong>Fortran</strong> 2018</div>
+                <div class="lang-item"><strong>Julia</strong> 1.6</div>
+                <div class="lang-item"><strong>R</strong> 4.2</div>
+                <div class="lang-item"><strong>Rust</strong> 1.72</div>
+                <div class="lang-item"><strong>Mojo</strong> 0.1</div>
+                <div class="lang-item"><strong>HTML/CSS</strong> 5 / 2.1</div>
+                <div class="lang-item"><strong>Node.js</strong></div>
+            </div>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Education & Experience</h2>
-        <p><strong>Current:</strong> Year-1 Electrical Engineering Student at City University of Hong Kong</p>
-        <p><strong>Internships:</strong> CityU Hong Kong, Shanghai Jiao Tong University, Harvard Summit for Young Leaders (Summer 2023)</p>
-        <p><strong>Programming:</strong> 26+ languages (Swift, C, C#, C++, Java, Python, TypeScript, Assembly, etc.)</p>
-    </div>
+    <div id="tab2" class="tab-content">
+        <div class="section">
+            <h2>💬 MCHIGM Q&A Forum</h2>
+            <p>The Source forum is a community platform for discussing projects, research, and technology.</p>
+            <p><a href="files/simple forum/source-MCHIGM/frontend/public/index.html" style="color: #667eea;">→ Visit Forum (requires desktop browser for best experience)</a></p>
+        </div>
 
-    <div class="section">
-        <h2>Research Areas</h2>
-        <ul>
-            <li>Microscopic Theoretical Physics</li>
-            <li>Machine Learning Models</li>
-            <li>Quantum Computing</li>
-            <li>Gaming Graphics & UI Integration</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Connect With Me</h2>
-        <div class="social-links">
-            <a href="https://github.com/mchigm"><i class="fa fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/陈悦铭"><i class="fa fa-linkedin"></i> LinkedIn</a>
-            <a href="https://www.kaggle.com/bryanchenyueming"><i class="fa fa-kaggle"></i> Kaggle</a>
-            <a href="https://www.reddit.com/user/MCHIGM"><i class="fa fa-reddit"></i> Reddit</a>
-            <a href="mailto:yuemingdd@gmail.com"><i class="fa fa-google"></i> Email</a>
+        <div class="section">
+            <h2>🚀 Latest: Universal Preview Extension</h2>
+            <p>Alpha test available for a new VS Code extension that previews multiple file formats locally.</p>
+            <p><a href="files/popup-pages/popup-viewer.html?page=universal-preview-alpha.md" style="color: #667eea;">→ Read more about the alpha test</a></p>
         </div>
     </div>
+
+    <div id="tab3" class="tab-content">
+        <div class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <div><strong>📧 Personal:</strong> yuemingdd@gmail.com</div>
+                <div><strong>📧 School (CityU):</strong> yuemichen6-c@my.cityu.edu.hk</div>
+                <div><strong>📱 Phone:</strong> (+852) 6998 1753</div>
+                <div><strong>🏫 Institution:</strong> City University of Hong Kong</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Social Media</h2>
+            <div class="social-links">
+                <a href="https://github.com/mchigm">GitHub</a>
+                <a href="https://www.linkedin.com/in/陈悦铭">LinkedIn</a>
+                <a href="https://www.kaggle.com/bryanchenyueming">Kaggle</a>
+                <a href="https://www.reddit.com/user/MCHIGM">Reddit</a>
+                <a href="https://twitter.com/PythonOffical">Twitter</a>
+                <a href="https://youtu.be/minecraft_herobrine_gaming">YouTube</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="desktop-link">
+        <a href="../../index.html">🖥️ Switch to Desktop Version</a>
+    </div>
+
+    <script>
+        function switchTab(index) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            
+            // Show selected tab
+            tabs[index].classList.add('active');
+            document.getElementById('tab' + index).classList.add('active');
+        }
+
+        // Collapsible functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(function(collapsible) {
+                collapsible.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
