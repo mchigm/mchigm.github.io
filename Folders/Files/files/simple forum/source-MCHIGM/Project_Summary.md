@@ -1,5 +1,3 @@
-> Original filename: About.md
-
 # Project Summary: MCHIGM Community Platform
 
 ## Overview
