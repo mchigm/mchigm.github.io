@@ -119,6 +119,6 @@ composer.phar
 # TypeScript
 *.tsbuildinfo
 
-# Build artifacts
+# Build artifacts - note: frontend/public/dist/ files are included via exception above
 *.map
-!frontend/public/dist/*.map
+!frontend/public/dist/**/*.map
