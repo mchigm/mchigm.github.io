@@ -48,6 +48,7 @@ pip-wheel-metadata/
 
 # Build outputs
 dist/
+!frontend/public/dist/
 build/
 *.min.js
 *.min.css
@@ -118,5 +119,6 @@ composer.phar
 # TypeScript
 *.tsbuildinfo
 
-# Build artifacts
+# Build artifacts - note: frontend/public/dist/ files are included via exception above
 *.map
+!frontend/public/dist/**/*.map
