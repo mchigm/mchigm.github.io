@@ -1,0 +1,76 @@
+name: Sync logs to website
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'Folders/Files/files/logs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-logs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Checkout personal website repository
+        uses: actions/checkout@v4
+        with:
+          repository: mchigm/mchigm.github.io
+          path: site
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy logs to website
+        run: |
+          # Create research directory if it doesn't exist
+          mkdir -p site/research
+
+          # Copy all log files from logs folder to site/research
+          if [ -d "Folders/Files/files/logs" ]; then
+            cp -r Folders/Files/files/logs/* site/research/ 2>/dev/null || true
+          fi
+
+      - name: Generate index.md
+        run: |
+          cd site/research
+
+          # Start the index file with title
+          echo "# Research Logs" > index.md
+          echo "" >> index.md
+
+          # Find all markdown files (excluding index.md)
+          find . -maxdepth 1 -type f -name "*.md" ! -name "index.md" | sort | while read -r file; do
+            filename=$(basename "$file")
+
+            # Extract first 5 lines as summary
+            summary=$(head -n 5 "$file" | sed 's/$/  /' | tr '\n' ' ')
+
+            # Add entry to index
+            echo "- <a href=\"$filename\">$filename</a>: $summary" >> index.md
+            echo "" >> index.md
+          done
+
+      - name: Commit and push to website repository
+        run: |
+          cd site
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add research/
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-sync logs from mchigm/mchigm.github.io [skip ci]"
+            git push
+          fi
